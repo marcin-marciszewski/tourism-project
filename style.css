@@ -7,7 +7,7 @@ html, body {
   background-color: #01659e;
   padding: 1% 0;
   font-size: 1.5em;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Bungee', cursive;
 
 }
 
@@ -29,9 +29,12 @@ html, body {
 .navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a.active1 {
   color: #FFF;
 }
+
+
+
 .landing-text h1 {
 font-family: 'Bungee', cursive;
-font-size: 10em;
+font-size: 12vw;
 color: white;
 
 
@@ -113,7 +116,7 @@ footer {
 }
 .fa {
   padding: 15px;
-  font-size: 40px;
+  font-size: 2vw;
   color: #FFF;
 }
 .fa:hover {
@@ -125,9 +128,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .landing-text h1 {
-    font-size: 3em;
-  }
+
   .fa {
     font-size: 30px;
     padding: 10px;
