@@ -121,22 +121,35 @@ body {
 
 .thumbnail img {
   position: relative;
+  border: solid 5px;
+  border-radius: 20px;
+  max-width: 30vw;
+  max-height: 40vh;
+
 }
 
+.btn {
+  font-size: 30px;
+  font-family: 'Bungee', cursive;
+  margin-top: 30px;
+}
 .centered {
   left: 0;
   position: absolute;
   text-align: center;
-  top: 20%;
+  top: 25%;
   width: 100%;
   color: white;
   font-family: 'Bungee', cursive;
   font-size: 3.5vw;
+}
 
+.caption  {
+  text-align: center;
 }
 
 
-
+/*Footer*/
 
 footer {
   width: 100%;
@@ -162,6 +175,7 @@ footer {
 }
 
 
+/*Media*/
 
 @media (max-width: 768px) {
 

@@ -1,17 +1,25 @@
-$(document).ready(function(){
- $('.landing-text h1').mouseenter(function(){
-    
-    var col = ("rgb(" + Math.floor(Math.random() * 255)
-      + "," + Math.floor(Math.random() * 255) + ","
-      + Math.floor(Math.random() * 255) + ")");
+$(document).ready(function() {
+ $('.landing-text h1').mouseenter(function() {
+
+  var col = ("rgb(" + Math.floor(Math.random() * 255) +
+   "," + Math.floor(Math.random() * 255) + "," +
+   Math.floor(Math.random() * 255) + ")");
 
 
-     $(this).css('color', col);
-     $(this).css('font-size', '14vw');
+  $(this).css('color', col);
+  $(this).css('font-size', '14vw');
  });
- $('.landing-text h1').mouseleave(function(){
-     $(this).css('color', 'white');
-     $(this).css('font-size', '12vw');
+ $('.landing-text h1').mouseleave(function() {
+  $(this).css('color', 'white');
+  $(this).css('font-size', '12vw');
  });
+
+ $('.centered').mouseenter(function() {
+  $(this).css('font-family', 'Roboto');
+ });
+ $('.centered').mouseleave(function() {
+  $(this).css('font-family', 'Bungee');
+ });
+ 
+ 
 });
-
