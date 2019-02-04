@@ -10,7 +10,6 @@
    $(folders[2] + images[i]).fadeOut(10);
   };
 
-  console.log(folders[0] + images[0]);
   $('.first').appear(function() {
    $('.first-show').fadeIn(2000);
    $(folders[0] + images[0]).fadeIn(1000);
