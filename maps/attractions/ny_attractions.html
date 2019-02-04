@@ -1,0 +1,269 @@
+<!--The idea for this page and big chunks of the code were taken from: https://eu.udacity.com/course/google-maps-apis--ud864. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-appear/0.1/jquery.appear.min.js"></script>
+
+
+    <style>
+        html,
+        body {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+     
+
+        #hide-listings,
+        #show-listings {
+            width: 300px;
+            height: 50px;
+            color: white;
+            background-color: #01659e;
+            border-radius: 25px;
+            border: white 5px solid;
+            font-size: 16px;
+            font-family: 'Bungee', cursive;
+
+
+        }
+
+
+        #map {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        #pano {
+            width: 600px;
+            height: 300px;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <div class="buttons">
+        <input id="show-listings" type="button" value="Show Listings">
+        <input id="hide-listings" type="button" value="Hide Listings">
+    </div>
+
+    <script>
+        var map;
+
+        var markers = [];
+
+        function initMap() {
+            var styles = [{
+                featureType: 'water',
+                stylers: [
+                    { color: '#19a0d8' }
+                ]
+            }, {
+                featureType: 'administrative',
+                elementType: 'labels.text.stroke',
+                stylers: [
+                    { color: '#ffffff' },
+                    { weight: 6 }
+                ]
+            }, {
+                featureType: 'administrative',
+                elementType: 'labels.text.fill',
+                stylers: [
+                    { color: '#e85113' }
+                ]
+            }, {
+                featureType: 'road.highway',
+                elementType: 'geometry.stroke',
+                stylers: [
+                    { color: '#efe9e4' },
+                    { lightness: -40 }
+                ]
+            }, {
+                featureType: 'transit.station',
+                stylers: [
+                    { weight: 9 },
+                    { hue: '#e85113' }
+                ]
+            }, {
+                featureType: 'road.highway',
+                elementType: 'labels.icon',
+                stylers: [
+                    { visibility: 'off' }
+                ]
+            }, {
+                featureType: 'water',
+                elementType: 'labels.text.stroke',
+                stylers: [
+                    { lightness: 100 }
+                ]
+            }, {
+                featureType: 'water',
+                elementType: 'labels.text.fill',
+                stylers: [
+                    { lightness: -100 }
+                ]
+            }, {
+                featureType: 'poi',
+                elementType: 'geometry',
+                stylers: [
+                    { visibility: 'on' },
+                    { color: '#f0e4d3' }
+                ]
+            }, {
+                featureType: 'road.highway',
+                elementType: 'geometry.fill',
+                stylers: [
+                    { color: '#efe9e4' },
+                    { lightness: -25 }
+                ]
+            }];
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 40.7413549, lng: -73.9980244 },
+                zoom: 13,
+                styles: styles,
+                mapTypeControl: false
+            });
+
+            var locations = [
+                { title: 'Hoboken Food Tour', location: { lat: 40.735772, lng: -74.029335 } },
+                { title: 'The Battery Fountain', location: { lat: 40.702797, lng: -74.016522 } }, 
+                { title: 'Fountain at Wall Street', location: { lat: 40.704464, lng: -74.006188 } },
+                { title: 'Wall Street Walks', location: { lat: 40.706078, lng: -74.008906 } }, 
+                { title: 'Fountain at Wall Street', location: { lat: 40.704457, lng: -74.006166 } },  
+                { title: 'The Brooklyn Bridge ', location: { lat: 40.707490, lng: -73.998457 } }, 
+                { title: 'FDNY Memorial Wall', location: { lat: 40.709903, lng: -74.012591 } }, 
+                { title: 'One World Observatory', location: { lat: 40.713365, lng: -74.016522 } },
+                { title: 'Greetings from Jersey City Mural', location: { lat: 40.730621, lng: -74.042584 } }, 
+                { title: 'JC OLD FIRE HOUSE', location: { lat: 40.742304, lng: -74.047621 } },   
+                { title: 'Hess Triangle', location: { lat: 40.733571, lng: -74.003104 } },    
+                { title: 'Metronome ', location: { lat: 40.734450, lng: -73.990236 } }, 
+                { title: 'The Water Tank Project-Jordi Fornies', location: { lat: 40.734961, lng: -73.987981 } },  
+                { title: 'Grayline New York Tours', location: { lat:40.748586,  lng: -73.985462  } }, 
+                { title: 'New York Explorer Pass®', location: { lat: 40.750894, lng: -73.989458 } },  
+                { title: 'Nikola Tesla Plaque', location: { lat: 40.752959, lng: -73.994134 } },   
+                { title: 'Ripleys Believe It or Not! Times Square', location: { lat: 40.756475, lng: -73.988888 } },
+                { title: 'Max Neuhaus’ sound installation “Times Square.” ', location: { lat: 40.757650, lng: -73.985301 } },   
+                { title: 'The Channel Gardens', location: { lat: 40.758527, lng: -73.978084 } },   
+                { title: 'Bethesda Terrace', location: { lat: 40.773900, lng: -73.970821 } },  
+            ];
+
+            var largeInfowindow = new google.maps.InfoWindow();
+
+
+            var defaultIcon = makeMarkerIcon('FF0000');
+            var highlightedIcon = makeMarkerIcon('FFFF24');
+
+            for (var i = 0; i < locations.length; i++) {
+                var position = locations[i].location;
+                var title = locations[i].title;
+                var marker = new google.maps.Marker({
+                    position: position,
+                    title: title,
+                    animation: google.maps.Animation.DROP,
+                    icon: defaultIcon,
+                    id: i
+                });
+                markers.push(marker);
+                marker.addListener('click', function() {
+                    populateInfoWindow(this, largeInfowindow);
+                });
+                marker.addListener('mouseover', function() {
+                    this.setIcon(highlightedIcon);
+                });
+                marker.addListener('mouseout', function() {
+                    this.setIcon(defaultIcon);
+                });
+            }
+
+            document.getElementById('show-listings').addEventListener('click', showListings);
+            document.getElementById('hide-listings').addEventListener('click', hideListings);
+
+        }
+
+        function populateInfoWindow(marker, infowindow) {
+            if (infowindow.marker != marker) {
+                infowindow.setContent('');
+                infowindow.marker = marker;
+                infowindow.addListener('closeclick', function() {
+                    infowindow.marker = null;
+                });
+                var streetViewService = new google.maps.StreetViewService();
+                var radius = 50;
+
+                function getStreetView(data, status) {
+                    if (status == google.maps.StreetViewStatus.OK) {
+                        var nearStreetViewLocation = data.location.latLng;
+                        var heading = google.maps.geometry.spherical.computeHeading(
+                            nearStreetViewLocation, marker.position);
+                        infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
+                        var panoramaOptions = {
+                            position: nearStreetViewLocation,
+                            pov: {
+                                heading: heading,
+                                pitch: 30
+                            }
+                        };
+                        var panorama = new google.maps.StreetViewPanorama(
+                            document.getElementById('pano'), panoramaOptions);
+                    }
+                    else {
+                        infowindow.setContent('<div>' + marker.title + '</div>' +
+                            '<div>No Street View Found</div>');
+                    }
+                }
+                streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+                infowindow.open(map, marker);
+            }
+        }
+
+        function showListings() {
+            var bounds = new google.maps.LatLngBounds();
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+                bounds.extend(markers[i].position);
+            }
+            map.fitBounds(bounds);
+        }
+
+        function hideListings() {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+        }
+
+
+        function makeMarkerIcon(markerColor) {
+            var markerImage = new google.maps.MarkerImage(
+                'https://img.icons8.com/color/64/000000/marker.png',
+                new google.maps.Size(40, 40),
+                new google.maps.Point(0, 0),
+                new google.maps.Point(10, 34),
+                new google.maps.Size(40, 40));
+            return markerImage;
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn5SRS3GViUBI4A0QjgxbM0aUH2n7btzg&callback=initMap" async defer></script>
+   
+     
+
+</body>
+
+</html>
