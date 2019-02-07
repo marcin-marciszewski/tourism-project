@@ -5,7 +5,6 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
-  
 
     <style>
         html,
@@ -138,43 +137,37 @@
         ]
     }
 ];
+    
 
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 40.7413549, lng: -73.9980244 },
+                center: { lat: 51.507602, lng: -0.127936 }, 
                 zoom: 13,
                 styles: styles,
                 mapTypeControl: false
             });
 
             var locations = [
-                { title: 'Hyatt Regency Jersey City', location: { lat: 40.717187, lng: -74.031772 } },  
-                { title: 'Hyatt House Jersey City', location: { lat: 40.715974, lng: -74.034104 } },   
-                { title: 'Residence Inn by Marriott Jersey City', location: { lat: 40.719185, lng: -74.040910 } }, 
-                { title: 'Candlewood Suites Jersey City - Harborside', location: { lat: 40.721030, lng: -74.034377 } },   
-                { title: 'DoubleTree by Hilton Hotel & Suites Jersey City', location: { lat: 40.723650, lng: -74.036773 } },    
-                { title: 'The Westin Jersey City Newport ', location: { lat: 40.724748, lng: -74.036269 } },   
-                { title: 'Courtyard by Marriott Jersey City Newport', location: { lat: 40.727472, lng: -74.034123 } },   
-                { title: 'The Holland Hotel', location: { lat: 40.730048, lng: -74.040310 } },  
-                { title: 'Hilton Garden Inn NYC Financial Center', location: { lat: 40.703005, lng: -74.012270 } },   
-                { title: 'The Wagner Hotel', location: { lat: 40.705559, lng: -74.017452 } },     
-                { title: 'The Wall Street Inn', location: { lat: 40.733571, lng: -74.003104 } },    
-                { title: 'Andaz Wall Street ', location: { lat: 40.705363, lng: -74.008014 } },   
-                { title: 'Courtyard by Marriott New York Downtown Manhattan', location: { lat: 40.709454, lng: -74.012647 } },    
-                { title: 'Aloft Manhattan Downtown', location: { lat:40.710464,  lng: -74.006706  } },  
-                { title: 'Hampton Inn Manhattan', location: { lat: 40.708934, lng: -74.002043 } },    
-                { title: 'AKA Smyth Tribeca', location: { lat: 40.715358, lng: -74.009077 } },     
-                { title: 'Fairfield Inn & Suites', location: { lat: 40.713443, lng: -73.992843 } },  
-                { title: 'The Roxy Hotel” ', location: { lat: 40.719507, lng: -74.004815 } },     
-                { title: 'Holiday Inn Nyc - Lower East Side', location: { lat: 40.718385, lng: -73.986404 } },     
-                { title: 'Courtyard', location: { lat: 40.727592, lng: -74.005733 } },
-                { title: 'The Standard, East Village', location: { lat: 40.728178, lng: -73.990682 } },    
-                { title: 'Freehand New York', location: { lat: 40.740060, lng: -73.984443 } },     
-                { title: 'Refinery Hotel', location: { lat: 40.752581, lng: -73.985172 } },   
-                { title: 'Lotte New York Palace', location: { lat: 40.758329, lng: -73.975011 } },     
-             { title: 'Hudson New York', location: { lat: 40.768489, lng: -73.984827 } },      
-                { title: 'Hotel Wales', location: { lat: 40.784988, lng: -73.955757 } },    
-                { title: 'Aloft Harlem', location: { lat: 40.809362, lng: -73.951523 } },     
-                { title: 'Umbrella Hotel', location: { lat: 40.818942, lng: -73.914996 } },     
+                { title: 'Z Hotel at Gloucester Place', location: { lat: 51.518213, lng: -0.158273 } },    
+                { title: 'The Ritz London', location: { lat: 51.506989, lng: -0.141583 } },    
+                { title: 'Meliá White House', location: { lat: 51.525295, lng: -0.143653 } },  
+                { title: 'Sanderson London', location: { lat: 51.517380, lng: -0.137007 } },    
+                { title: 'St Martins Lane Hotel', location: { lat: 51.510485, lng: -0.126726   } },    
+                { title: 'My Bloomsbury', location: { lat: 51.518875, lng: -0.131909 } },    
+                { title: 'Hilton London Euston', location: { lat: 51.526553, lng: -0.130063 } },    
+                { title: 'Rosewood London', location: { lat: 51.517740, lng: -0.117626 } },   
+                { title: 'Apex Temple Court Hotel', location: { lat: 51.513799, lng: -0.108896 } },    
+                { title: 'LSE Rosebery Hall', location: { lat: 51.527607, lng: -0.107122 } },      
+                { title: 'The Zetter Townhouse Clerkenwell', location: { lat: 51.522759, lng: -0.103718  } },    
+                { title: 'Threadneedles', location: { lat: 51.514122, lng: -0.085620 } },    
+                { title: 'Novotel London Tower Bridge Hotel', location: { lat: 51.510673, lng: -0.077369 } },     
+                { title: 'ibis London City', location: { lat:51.515717,  lng: -0.072488  } },    
+                { title: 'Hampton Inn Manhattan', location: { lat: 51.515755, lng: -0.072498 } },     
+                { title: 'Point A Hotel London', location: { lat: 51.521077, lng: -0.077668 } },       
+                { title: 'Park Plaza County Hall London', location: { lat: 51.501487, lng: -0.115872 } },   
+                { title: 'Lambeth North by Q Apartments” ', location: { lat: 51.495488, lng: -0.103159 } },       
+                { title: 'BridgeResidence Inn by Marriott London Bridge', location: { lat: 51.498739, lng: -0.084141 } },     
+                { title: 'ibis Styles London Southwark', location: { lat: 51.506027, lng: -0.095068 } },  
+               
             ];
 
             var largeInfowindow = new google.maps.InfoWindow();

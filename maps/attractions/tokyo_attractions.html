@@ -5,9 +5,8 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
-  
-
-    <style>
+   
+       <style>
         html,
         body {
             font-family: Arial, sans-serif;
@@ -140,47 +139,36 @@
 ];
 
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 40.7413549, lng: -73.9980244 },
+                center: { lat: 51.507602, lng: -0.127936 }, 
                 zoom: 13,
                 styles: styles,
                 mapTypeControl: false
             });
 
             var locations = [
-                { title: 'Hyatt Regency Jersey City', location: { lat: 40.717187, lng: -74.031772 } },  
-                { title: 'Hyatt House Jersey City', location: { lat: 40.715974, lng: -74.034104 } },   
-                { title: 'Residence Inn by Marriott Jersey City', location: { lat: 40.719185, lng: -74.040910 } }, 
-                { title: 'Candlewood Suites Jersey City - Harborside', location: { lat: 40.721030, lng: -74.034377 } },   
-                { title: 'DoubleTree by Hilton Hotel & Suites Jersey City', location: { lat: 40.723650, lng: -74.036773 } },    
-                { title: 'The Westin Jersey City Newport ', location: { lat: 40.724748, lng: -74.036269 } },   
-                { title: 'Courtyard by Marriott Jersey City Newport', location: { lat: 40.727472, lng: -74.034123 } },   
-                { title: 'The Holland Hotel', location: { lat: 40.730048, lng: -74.040310 } },  
-                { title: 'Hilton Garden Inn NYC Financial Center', location: { lat: 40.703005, lng: -74.012270 } },   
-                { title: 'The Wagner Hotel', location: { lat: 40.705559, lng: -74.017452 } },     
-                { title: 'The Wall Street Inn', location: { lat: 40.733571, lng: -74.003104 } },    
-                { title: 'Andaz Wall Street ', location: { lat: 40.705363, lng: -74.008014 } },   
-                { title: 'Courtyard by Marriott New York Downtown Manhattan', location: { lat: 40.709454, lng: -74.012647 } },    
-                { title: 'Aloft Manhattan Downtown', location: { lat:40.710464,  lng: -74.006706  } },  
-                { title: 'Hampton Inn Manhattan', location: { lat: 40.708934, lng: -74.002043 } },    
-                { title: 'AKA Smyth Tribeca', location: { lat: 40.715358, lng: -74.009077 } },     
-                { title: 'Fairfield Inn & Suites', location: { lat: 40.713443, lng: -73.992843 } },  
-                { title: 'The Roxy Hotel” ', location: { lat: 40.719507, lng: -74.004815 } },     
-                { title: 'Holiday Inn Nyc - Lower East Side', location: { lat: 40.718385, lng: -73.986404 } },     
-                { title: 'Courtyard', location: { lat: 40.727592, lng: -74.005733 } },
-                { title: 'The Standard, East Village', location: { lat: 40.728178, lng: -73.990682 } },    
-                { title: 'Freehand New York', location: { lat: 40.740060, lng: -73.984443 } },     
-                { title: 'Refinery Hotel', location: { lat: 40.752581, lng: -73.985172 } },   
-                { title: 'Lotte New York Palace', location: { lat: 40.758329, lng: -73.975011 } },     
-             { title: 'Hudson New York', location: { lat: 40.768489, lng: -73.984827 } },      
-                { title: 'Hotel Wales', location: { lat: 40.784988, lng: -73.955757 } },    
-                { title: 'Aloft Harlem', location: { lat: 40.809362, lng: -73.951523 } },     
-                { title: 'Umbrella Hotel', location: { lat: 40.818942, lng: -73.914996 } },     
+                { title: 'The Wonderpass', location: { lat: 51.522227, lng: -0.157241 } }, 
+                { title: 'The Royal Mews, Buckingham Palace', location: { lat: 51.498781, lng: -0.144492} }, 
+                { title: 'Harry Potter London Walking Tour', location: { lat: 51.510103, lng: -0.129927 } },  
+                { title: 'Banqueting House', location: { lat: 51.504627, lng: -0.125987 } },   
+                { title: 'Roman Bath', location: { lat: 51.511737, lng: -0.115576 } },   
+                { title: 'London Eye River Cruise', location: { lat: 51.503213, lng: -0.120467 } }, 
+                { title: 'Coca-Cola London Eye', location: { lat: 51.503198, lng: -0.119527 } },   
+                { title: 'London Dungeons', location: { lat: 51.502792, lng: -0.119275 } },   
+                { title: 'Shrek’s Adventure! London', location: { lat: 51.502007, lng: -0.119614 } },   
+                { title: 'Merlin Entertainment', location: { lat: 51.501947, lng: -0.118804 } },     
+                { title: 'Escape Plan', location: { lat: 51.489726, lng: -0.099345 } },      
+                { title: 'The London Bridge Experience & London Tombs', location: { lat: 51.506504, lng: -0.087760 } },   
+                { title: 'Tower of London - Lanthorn Tower', location: { lat: 51.507372, lng: -0.075776 } },    
+                { title: 'London Roman Amphitheatre', location: { lat:51.515605,  lng: -0.091479  } },  
+                { title: 'The Jack The Ripper Experience', location: { lat: 51.519556, lng: -0.073888 } },   
+                { title: 'A World In Islington Panels', location: { lat: 51.532825, lng: -0.098069 } },    
             ];
 
             var largeInfowindow = new google.maps.InfoWindow();
 
 
             var defaultIcon = makeMarkerIcon('FF0000');
+
 
             for (var i = 0; i < locations.length; i++) {
                 var position = locations[i].location;
@@ -258,7 +246,7 @@
 
         function makeMarkerIcon(markerColor) {
             var markerImage = new google.maps.MarkerImage(
-                'https://img.icons8.com/color/48/000000/hotel-information.png',
+                'https://img.icons8.com/color/64/000000/marker.png',
                 new google.maps.Size(40, 40),
                 new google.maps.Point(0, 0),
                 new google.maps.Point(10, 34),
