@@ -1,0 +1,267 @@
+<!--The idea for this page and big chunks of the code were taken from: https://eu.udacity.com/course/google-maps-apis--ud864. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
+
+
+    <style>
+        html,
+        body {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+     
+
+        #hide-listings,
+        #show-listings {
+            width: 300px;
+            height: 50px;
+            color: white;
+            background-color: #01659e;
+            border-radius: 25px;
+            border: white 5px solid;
+            font-size: 16px;
+            font-family: 'Bungee', cursive;
+        }
+
+
+        #map {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        #pano {
+            width: 600px;
+            height: 300px;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <div class="buttons">
+        <input id="show-listings" type="button" value="Show Listings">
+        <input id="hide-listings" type="button" value="Hide Listings">
+    </div>
+
+    <script>
+        var map;
+
+        var markers = [];
+
+        function initMap() {
+            var styles = [
+    {
+        "featureType": "landscape.natural",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#e0efef"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "hue": "#1900ff"
+            },
+            {
+                "color": "#c0e8e8"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "lightness": 100
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit.line",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "lightness": 700
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#7dcdcd"
+            }
+        ]
+    }
+];
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -22.906846, lng: -43.181970 },     
+                zoom: 14,
+                styles: styles,
+                mapTypeControl: false
+            });
+
+            var locations = [
+                { title: 'Trattoria Del Campo', location: { lat: -22.903022, lng: -43.219437 } },      
+                { title: 'LAtelier du Cuisinier', location: { lat: -22.900673, lng: -43.180160 } },        
+                { title: 'Verde Vício', location: { lat:-22.902015,  lng: -43.177228 } },    
+                { title: 'Xian Rio', location: { lat: -22.914741, lng: -43.166110  } },        
+                { title: 'Laguiole Lab', location: { lat: -22.913959, lng: -43.172828 } },       
+                { title: 'La Bocca Bar & Trattoria', location: { lat: -22.915312, lng: -43.186799   } },     
+                { title: 'Espírito Santa', location: { lat: -22.920449, lng: -43.184871  } },      
+                { title: 'Pizzaria do Chico', location: { lat: -22.922124, lng: -43.181030 } },     
+                { title: 'Rotisseria Sírio Libanesa', location: { lat: -22.931492, lng: -43.178825 } },         
+                { title: 'Majórica', location: { lat: -22.933657, lng: -43.176373 } },    
+                { title: 'Domenica Pizzaria Artesanal', location: { lat: -22.921379, lng: -43.221649   } },   
+                { title: 'Aconchego Carioca', location: { lat: -22.912882, lng: -43.214101   } },      
+                { title: 'Subway', location: { lat: -22.911757, lng: -43.202586  } },       
+                { title: 'China Town', location: { lat: -22.920434, lng: -43.217690 } },     
+                { title: 'Casa do Sardo', location: { lat: -22.903466, lng: -43.218751 } },      
+                { title: 'Komida Kaseira', location: { lat: -22.918792, lng: -43.211610 } },   
+                { title: '365', location: { lat: -22.897212, lng: -43.202037 } },        
+                { title: 'Gabo Cafe', location: { lat: -22.901151, lng: -43.203382 } },        
+                { title: 'Spoleto', location: { lat: -22.899457, lng: -43.209377 } },        
+
+    ];
+
+            var largeInfowindow = new google.maps.InfoWindow();
+
+
+            var defaultIcon = makeMarkerIcon('FF0000');
+            var highlightedIcon = makeMarkerIcon('FFFF24');
+
+            for (var i = 0; i < locations.length; i++) {
+                var position = locations[i].location;
+                var title = locations[i].title;
+                var marker = new google.maps.Marker({
+                    position: position,
+                    title: title,
+                    animation: google.maps.Animation.DROP,
+                    icon: defaultIcon,
+                    id: i
+                });
+                markers.push(marker);
+                marker.addListener('click', function() {
+                    populateInfoWindow(this, largeInfowindow);
+                });
+
+            }
+
+            document.getElementById('show-listings').addEventListener('click', showListings);
+            document.getElementById('hide-listings').addEventListener('click', hideListings);
+
+        }
+
+        function populateInfoWindow(marker, infowindow) {
+            if (infowindow.marker != marker) {
+                infowindow.setContent('');
+                infowindow.marker = marker;
+                infowindow.addListener('closeclick', function() {
+                    infowindow.marker = null;
+                });
+                var streetViewService = new google.maps.StreetViewService();
+                var radius = 50;
+
+                function getStreetView(data, status) {
+                    if (status == google.maps.StreetViewStatus.OK) {
+                        var nearStreetViewLocation = data.location.latLng;
+                        var heading = google.maps.geometry.spherical.computeHeading(
+                            nearStreetViewLocation, marker.position);
+                        infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
+                        var panoramaOptions = {
+                            position: nearStreetViewLocation,
+                            pov: {
+                                heading: heading,
+                                pitch: 30
+                            }
+                        };
+                        var panorama = new google.maps.StreetViewPanorama(
+                            document.getElementById('pano'), panoramaOptions);
+                    }
+                    else {
+                        infowindow.setContent('<div>' + marker.title + '</div>' +
+                            '<div>No Street View Found</div>');
+                    }
+                }
+                streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+                infowindow.open(map, marker);
+            }
+        }
+
+        function showListings() {
+            var bounds = new google.maps.LatLngBounds();
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+                bounds.extend(markers[i].position);
+            }
+            map.fitBounds(bounds);
+        }
+
+        function hideListings() {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+        }
+
+
+        function makeMarkerIcon(markerColor) {
+            var markerImage = new google.maps.MarkerImage(
+                'https://img.icons8.com/color/48/000000/dining-room.png',
+                new google.maps.Size(40, 40),
+                new google.maps.Point(0, 0),
+                new google.maps.Point(10, 34),
+                new google.maps.Size(40, 40));
+            return markerImage;
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn5SRS3GViUBI4A0QjgxbM0aUH2n7btzg&callback=initMap" async defer></script>
+   
+     
+
+</body>
+
+</html>
