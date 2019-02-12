@@ -1,0 +1,280 @@
+<!--The idea for this page and big chunks of the code were taken from: https://eu.udacity.com/course/google-maps-apis--ud864. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
+   
+       <style>
+        html,
+        body {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+     
+
+        #hide-listings,
+        #show-listings {
+            width: 300px;
+            height: 50px;
+            color: white;
+            background-color: #01659e;
+            border-radius: 25px;
+            border: white 5px solid;
+            font-size: 16px;
+            font-family: 'Bungee', cursive;
+
+
+        }
+
+
+        #map {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        #pano {
+            width: 600px;
+            height: 300px;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <div class="buttons">
+        <input id="show-listings" type="button" value="Show Listings">
+        <input id="hide-listings" type="button" value="Hide Listings">
+    </div>
+
+    <script>
+        var map;
+
+        var markers = [];
+
+        function initMap() {
+            var styles = [
+    {
+        "featureType": "landscape.natural",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#e0efef"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "hue": "#1900ff"
+            },
+            {
+                "color": "#c0e8e8"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "lightness": 100
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit.line",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "lightness": 700
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#7dcdcd"
+            }
+        ]
+    }
+];
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -33.848790, lng: 151.213883   },      
+                zoom: 14,
+                styles: styles,
+                mapTypeControl: false
+            });
+
+            var locations = [
+                { title: 'Greenwich Village ', location: { lat: -33.827513, lng: 151.188055 } },     
+                { title: 'North Shore Hotel', location: { lat: -33.829923, lng: 151.208459 } },       
+                { title: 'Park Regis Concierge Apartments', location: { lat: -33.828639, lng: 151.229785 } },  
+                { title: 'Ballantyne at Mosman', location: { lat: -33.831490,  lng: 151.238384 } },      
+                { title: 'Rydges North Sydney', location: { lat: -33.834174, lng: 151.209011} },      
+                { title: 'Vibe Hotel North Sydney', location: { lat: -33.837946, lng:   151.206698} },     
+                { title: 'Neutral Bay Lodge', location: { lat: -33.840104, lng: 151.219272 } },        
+                { title: 'Meriton Suites North Sydney', location: { lat: -33.840263, lng: 151.209576 } },          
+                { title: 'The Manere', location: { lat: -33.841418, lng: 151.202536  } },     
+                { title: 'Blues Point Hotel', location: { lat: -33.845682, lng: 151.203896 } },        
+                { title: 'Harbourside Serviced Apartments', location: { lat: -33.847832, lng: 151.205720  } },     
+                { title: 'Carnarvon Lodge', location: { lat: -33.848021, lng: 151.215840 } },     
+                { title: 'Neutral Bay Lodge', location: { lat: -33.840058, lng: 151.219299 } },       
+                { title: 'Cremorne Point Manor', location: { lat: -33.844444, lng: 151.229366 } },       
+                { title: 'Park Regis Concierge Apartments', location: { lat: -33.828660, lng: 151.229786 } },     
+                { title: 'The Australian Heritage Hotel', location: { lat: -33.859603, lng: 151.207071  } },       
+                { title: 'Hotel Palisade', location: { lat: -33.857917, lng: 151.202152   } },      
+                { title: 'The Langham Sydney', location: { lat: -33.860486, lng: 151.203542 } },       
+                { title: 'Quay West Suites Sydney Hotel', location: { lat: -33.861612, lng: 151.206944} },   
+                { title: 'InterContinental Sydney', location: { lat: -33.862893, lng: 151.212342  } },      
+                { title: 'Travelodge Hotel Sydney Wynyard', location: { lat: -33.864785,  lng: 151.205440  } },     
+                { title: 'Sofitel Sydney Wentworth', location: { lat: -33.865516, lng: 151.211051} }, 
+                
+                { title: 'Travelodge Hotel Sydney Martin Place', location: { lat: -33.868496, lng: 151.210886 } },         
+                { title: 'Waldorf Woolloomooloo', location: { lat: -33.870274, lng: 151.221540 } },        
+                { title: 'Mad Monkey', location: { lat: -33.873597, lng: 151.224092} },      
+                { title: 'Lodge Motel Edgecliff', location: { lat: -33.876761, lng: 151.233010 } },        
+                { title: 'Cambridge Hotel Sydney', location: { lat: -33.880295, lng: 151.214119 } },       
+                { title: 'Novotel Sydney Central', location: { lat: -33.881831, lng: 151.202711  } },       
+                { title: 'Veriu Broadway', location: { lat: -33.882532, lng:  151.195934 } },   
+                { title: 'Veriu Camperdown', location: { lat: -33.885535, lng: 151.180471   } },      
+                { title: 'Crown Hotel Surry Hills', location: { lat: -33.891290, lng: 151.212679  } },     
+             ];
+
+            var largeInfowindow = new google.maps.InfoWindow();
+
+
+            var defaultIcon = makeMarkerIcon('FF0000');
+
+
+            for (var i = 0; i < locations.length; i++) {
+                var position = locations[i].location;
+                var title = locations[i].title;
+                var marker = new google.maps.Marker({
+                    position: position,
+                    title: title,
+                    animation: google.maps.Animation.DROP,
+                    icon: defaultIcon,
+                    id: i
+                });
+                markers.push(marker);
+                marker.addListener('click', function() {
+                    populateInfoWindow(this, largeInfowindow);
+                });
+
+            }
+
+            document.getElementById('show-listings').addEventListener('click', showListings);
+            document.getElementById('hide-listings').addEventListener('click', hideListings);
+
+        }
+
+        function populateInfoWindow(marker, infowindow) {
+            if (infowindow.marker != marker) {
+                infowindow.setContent('');
+                infowindow.marker = marker;
+                infowindow.addListener('closeclick', function() {
+                    infowindow.marker = null;
+                });
+                var streetViewService = new google.maps.StreetViewService();
+                var radius = 50;
+
+                function getStreetView(data, status) {
+                    if (status == google.maps.StreetViewStatus.OK) {
+                        var nearStreetViewLocation = data.location.latLng;
+                        var heading = google.maps.geometry.spherical.computeHeading(
+                            nearStreetViewLocation, marker.position);
+                        infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
+                        var panoramaOptions = {
+                            position: nearStreetViewLocation,
+                            pov: {
+                                heading: heading,
+                                pitch: 30
+                            }
+                        };
+                        var panorama = new google.maps.StreetViewPanorama(
+                            document.getElementById('pano'), panoramaOptions);
+                    }
+                    else {
+                        infowindow.setContent('<div>' + marker.title + '</div>' +
+                            '<div>No Street View Found</div>');
+                    }
+                }
+                streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+                infowindow.open(map, marker);
+            }
+        }
+
+        function showListings() {
+            var bounds = new google.maps.LatLngBounds();
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+                bounds.extend(markers[i].position);
+            }
+            map.fitBounds(bounds);
+        }
+
+        function hideListings() {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+        }
+
+
+        function makeMarkerIcon(markerColor) {
+            var markerImage = new google.maps.MarkerImage(
+                'https://img.icons8.com/color/48/000000/hotel-information.png',
+                new google.maps.Size(40, 40),
+                new google.maps.Point(0, 0),
+                new google.maps.Point(10, 34),
+                new google.maps.Size(40, 40));
+            return markerImage;
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn5SRS3GViUBI4A0QjgxbM0aUH2n7btzg&callback=initMap" async defer></script>
+   
+     
+
+</body>
+
+</html>

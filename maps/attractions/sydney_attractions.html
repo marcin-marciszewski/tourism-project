@@ -1,0 +1,263 @@
+<!--The idea for this page and big chunks of the code were taken from: https://eu.udacity.com/course/google-maps-apis--ud864. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
+   
+       <style>
+        html,
+        body {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+     
+
+        #hide-listings,
+        #show-listings {
+            width: 300px;
+            height: 50px;
+            color: white;
+            background-color: #01659e;
+            border-radius: 25px;
+            border: white 5px solid;
+            font-size: 16px;
+            font-family: 'Bungee', cursive;
+
+
+        }
+
+
+        #map {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        #pano {
+            width: 600px;
+            height: 300px;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <div class="buttons">
+        <input id="show-listings" type="button" value="Show Listings">
+        <input id="hide-listings" type="button" value="Hide Listings">
+    </div>
+
+    <script>
+        var map;
+
+        var markers = [];
+
+        function initMap() {
+            var styles = [
+    {
+        "featureType": "landscape.natural",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#e0efef"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "hue": "#1900ff"
+            },
+            {
+                "color": "#c0e8e8"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "lightness": 100
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit.line",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "lightness": 700
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#7dcdcd"
+            }
+        ]
+    }
+];
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -33.848790, lng: 151.213883   },      
+                zoom: 14,
+                styles: styles,
+                mapTypeControl: false
+            });
+
+            var locations = [
+                { title: 'Woolwich Lookout', location: { lat: -33.840698, lng: 151.171031   } },     
+                { title: 'Pulpit Point lookout', location: { lat: -33.844363, lng: 151.161389  } },         
+                { title: 'Brett Whiteley Place', location: { lat:-33.838873,  lng: 151.207476  } },     
+                { title: 'Lavender Bay Jetty', location: { lat: -33.844246,  lng: 151.207954  } },         
+                { title: 'Luna Park Sydney', location: { lat: -33.847681, lng: 151.209842  } },    
+                { title: 'The Rocks Walking Tours', location: { lat: -33.859185, lng: 151.207692  } },      
+                { title: 'Sydney bus tour hop and off', location: { lat: -33.861500, lng: 151.210346 } },       
+                { title: 'Mrs Macquarie Chair', location: { lat: -33.859648, lng: 151.222531  } },          
+                { title: 'Palm House', location: { lat: -33.865905, lng:  151.217159} },     
+                { title: 'WILD LIFE Sydney Zoo', location: { lat: -33.869331, lng: 151.201709   } },    
+                { title: 'Alquemie', location: { lat: -33.863476, lng:  151.194924   } },      
+                { title: 'Sydney Heritage Fleet', location: { lat: -33.869914, lng: 151.176782 } },         
+                { title: 'Sydney Guided Tours', location: { lat: -33.876822, lng: 151.181195  } },      
+                { title: 'Canopy Fountain', location: { lat: -33.878252, lng: 151.214276 } },      
+                { title: 'Kings Cross Walking Tour', location: { lat: -33.875227, lng: 151.222543} },    
+            ];
+
+            var largeInfowindow = new google.maps.InfoWindow();
+
+
+            var defaultIcon = makeMarkerIcon('FF0000');
+
+
+            for (var i = 0; i < locations.length; i++) {
+                var position = locations[i].location;
+                var title = locations[i].title;
+                var marker = new google.maps.Marker({
+                    position: position,
+                    title: title,
+                    animation: google.maps.Animation.DROP,
+                    icon: defaultIcon,
+                    id: i
+                });
+                markers.push(marker);
+                marker.addListener('click', function() {
+                    populateInfoWindow(this, largeInfowindow);
+                });
+
+            }
+
+            document.getElementById('show-listings').addEventListener('click', showListings);
+            document.getElementById('hide-listings').addEventListener('click', hideListings);
+
+        }
+
+        function populateInfoWindow(marker, infowindow) {
+            if (infowindow.marker != marker) {
+                infowindow.setContent('');
+                infowindow.marker = marker;
+                infowindow.addListener('closeclick', function() {
+                    infowindow.marker = null;
+                });
+                var streetViewService = new google.maps.StreetViewService();
+                var radius = 50;
+
+                function getStreetView(data, status) {
+                    if (status == google.maps.StreetViewStatus.OK) {
+                        var nearStreetViewLocation = data.location.latLng;
+                        var heading = google.maps.geometry.spherical.computeHeading(
+                            nearStreetViewLocation, marker.position);
+                        infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
+                        var panoramaOptions = {
+                            position: nearStreetViewLocation,
+                            pov: {
+                                heading: heading,
+                                pitch: 30
+                            }
+                        };
+                        var panorama = new google.maps.StreetViewPanorama(
+                            document.getElementById('pano'), panoramaOptions);
+                    }
+                    else {
+                        infowindow.setContent('<div>' + marker.title + '</div>' +
+                            '<div>No Street View Found</div>');
+                    }
+                }
+                streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+                infowindow.open(map, marker);
+            }
+        }
+
+        function showListings() {
+            var bounds = new google.maps.LatLngBounds();
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+                bounds.extend(markers[i].position);
+            }
+            map.fitBounds(bounds);
+        }
+
+        function hideListings() {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+        }
+
+
+        function makeMarkerIcon(markerColor) {
+            var markerImage = new google.maps.MarkerImage(
+                'https://img.icons8.com/color/64/000000/marker.png',
+                new google.maps.Size(40, 40),
+                new google.maps.Point(0, 0),
+                new google.maps.Point(10, 34),
+                new google.maps.Size(40, 40));
+            return markerImage;
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn5SRS3GViUBI4A0QjgxbM0aUH2n7btzg&callback=initMap" async defer></script>
+   
+     
+
+</body>
+
+</html>
