@@ -5,9 +5,8 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
-
-
-    <style>
+   
+       <style>
         html,
         body {
             font-family: Arial, sans-serif;
@@ -28,6 +27,8 @@
             border: white 5px solid;
             font-size: 16px;
             font-family: 'Bungee', cursive;
+
+
         }
 
 
@@ -40,7 +41,6 @@
         #pano {
             width: 600px;
             height: 300px;
-            
         }
 
         .buttons {
@@ -139,40 +139,35 @@
 ];
 
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -22.906846, lng: -43.181970 },     
+                center: { lat: -33.925939, lng: 18.423740  },      
                 zoom: 14,
                 styles: styles,
                 mapTypeControl: false
             });
 
             var locations = [
-                { title: 'Trattoria Del Campo', location: { lat: -22.903022, lng: -43.219437 } },      
-                { title: 'LAtelier du Cuisinier', location: { lat: -22.900673, lng: -43.180160 } },        
-                { title: 'Verde Vício', location: { lat:-22.902015,  lng: -43.177228 } },    
-                { title: 'Xian Rio', location: { lat: -22.914741, lng: -43.166110  } },        
-                { title: 'Laguiole Lab', location: { lat: -22.913959, lng: -43.172828 } },       
-                { title: 'La Bocca Bar & Trattoria', location: { lat: -22.915312, lng: -43.186799   } },     
-                { title: 'Espírito Santa', location: { lat: -22.920449, lng: -43.184871  } },      
-                { title: 'Pizzaria do Chico', location: { lat: -22.922124, lng: -43.181030 } },     
-                { title: 'Rotisseria Sírio Libanesa', location: { lat: -22.931492, lng: -43.178825 } },         
-                { title: 'Majórica', location: { lat: -22.933657, lng: -43.176373 } },    
-                { title: 'Domenica Pizzaria Artesanal', location: { lat: -22.921379, lng: -43.221649   } },   
-                { title: 'Aconchego Carioca', location: { lat: -22.912882, lng: -43.214101   } },      
-                { title: 'Subway', location: { lat: -22.911757, lng: -43.202586  } },       
-                { title: 'China Town', location: { lat: -22.920434, lng: -43.217690 } },     
-                { title: 'Casa do Sardo', location: { lat: -22.903466, lng: -43.218751 } },      
-                { title: 'Komida Kaseira', location: { lat: -22.918792, lng: -43.211610 } },   
-                { title: '365', location: { lat: -22.897212, lng: -43.202037 } },        
-                { title: 'Gabo Cafe', location: { lat: -22.901151, lng: -43.203382 } },        
-                { title: 'Spoleto', location: { lat: -22.899457, lng: -43.209377 } },        
-
-    ];
+                { title: 'Cape English Language Adventures', location: { lat: -33.925881, lng: 18.380610  } },     
+                { title: 'Rhinosaurus', location: { lat: -33.909642, lng: 18.390439 } },         
+                { title: 'Rocklands Beach', location: { lat:-33.908586,  lng: 18.393291 } },     
+                { title: 'Scootours Cape Town', location: { lat: -33.942840, lng: 18.395576  } },         
+                { title: 'CAPE TOWN TANDEM PARAGLIDING', location: { lat: -33.917749, lng: 18.402608 } },    
+                { title: 'The Cape Wheel', location: { lat: -33.905285, lng: 18.419926   } },      
+                { title: 'Cape Town Pass', location: { lat: -33.907133, lng: 18.418263 } },      
+                { title: 'Wineland Ballooning Cape Town', location: { lat: -33.907232, lng: 18.422822  } },         
+                { title: 'Signal Hill Noon Gun', location: { lat: -33.915114, lng:  18.411514 } },    
+                { title: 'VoiceMap Bo-Kaap Audio Tour', location: { lat: -33.921279, lng: 18.415175   } },    
+                { title: 'Exotic Cars And Tours', location: { lat: -33.917733, lng: 18.424135   } },       
+                { title: 'Gun Fun', location: { lat: -33.921315, lng: 18.419693 } },        
+                { title: 'Thompson Holidays Cape Town', location: { lat: -33.919460, lng: 18.424167 } },      
+                { title: 'Tunnel Tour Goodhope Adventures', location: { lat: -33.926623, lng: 18.427054   } },     
+                { title: 'Unit 6 Ravenscraig Mews', location: { lat: -33.931728, lng: 18.442834 } },   
+            ];
 
             var largeInfowindow = new google.maps.InfoWindow();
 
 
             var defaultIcon = makeMarkerIcon('FF0000');
-            var highlightedIcon = makeMarkerIcon('FFFF24');
+
 
             for (var i = 0; i < locations.length; i++) {
                 var position = locations[i].location;
@@ -250,7 +245,7 @@
 
         function makeMarkerIcon(markerColor) {
             var markerImage = new google.maps.MarkerImage(
-                'https://img.icons8.com/color/48/000000/dining-room.png',
+                'https://img.icons8.com/color/64/000000/marker.png',
                 new google.maps.Size(40, 40),
                 new google.maps.Point(0, 0),
                 new google.maps.Point(10, 34),

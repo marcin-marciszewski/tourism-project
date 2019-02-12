@@ -5,9 +5,8 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
-
-
-    <style>
+   
+       <style>
         html,
         body {
             font-family: Arial, sans-serif;
@@ -28,6 +27,8 @@
             border: white 5px solid;
             font-size: 16px;
             font-family: 'Bungee', cursive;
+
+
         }
 
 
@@ -40,7 +41,6 @@
         #pano {
             width: 600px;
             height: 300px;
-            
         }
 
         .buttons {
@@ -139,40 +139,43 @@
 ];
 
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -22.906846, lng: -43.181970 },     
+                center: { lat: -33.925939, lng: 18.423740  },      
                 zoom: 14,
                 styles: styles,
                 mapTypeControl: false
             });
 
             var locations = [
-                { title: 'Trattoria Del Campo', location: { lat: -22.903022, lng: -43.219437 } },      
-                { title: 'LAtelier du Cuisinier', location: { lat: -22.900673, lng: -43.180160 } },        
-                { title: 'Verde Vício', location: { lat:-22.902015,  lng: -43.177228 } },    
-                { title: 'Xian Rio', location: { lat: -22.914741, lng: -43.166110  } },        
-                { title: 'Laguiole Lab', location: { lat: -22.913959, lng: -43.172828 } },       
-                { title: 'La Bocca Bar & Trattoria', location: { lat: -22.915312, lng: -43.186799   } },     
-                { title: 'Espírito Santa', location: { lat: -22.920449, lng: -43.184871  } },      
-                { title: 'Pizzaria do Chico', location: { lat: -22.922124, lng: -43.181030 } },     
-                { title: 'Rotisseria Sírio Libanesa', location: { lat: -22.931492, lng: -43.178825 } },         
-                { title: 'Majórica', location: { lat: -22.933657, lng: -43.176373 } },    
-                { title: 'Domenica Pizzaria Artesanal', location: { lat: -22.921379, lng: -43.221649   } },   
-                { title: 'Aconchego Carioca', location: { lat: -22.912882, lng: -43.214101   } },      
-                { title: 'Subway', location: { lat: -22.911757, lng: -43.202586  } },       
-                { title: 'China Town', location: { lat: -22.920434, lng: -43.217690 } },     
-                { title: 'Casa do Sardo', location: { lat: -22.903466, lng: -43.218751 } },      
-                { title: 'Komida Kaseira', location: { lat: -22.918792, lng: -43.211610 } },   
-                { title: '365', location: { lat: -22.897212, lng: -43.202037 } },        
-                { title: 'Gabo Cafe', location: { lat: -22.901151, lng: -43.203382 } },        
-                { title: 'Spoleto', location: { lat: -22.899457, lng: -43.209377 } },        
-
-    ];
+                { title: 'Radisson Blu Hotel Waterfront', location: { lat: -33.899570, lng: 18.412030 } },   
+                { title: 'Greenside Views', location: { lat: -33.904215, lng: 18.398850 } },    
+                { title: 'The Courtyard Backpackers', location: { lat: -33.911542, lng: 18.393123 } },      
+                { title: 'The Glen Boutique Hotel & Spa', location: { lat: -33.916841, lng: 18.391567 } }, 
+                { title: 'Ashby Manor Guest House', location: { lat: -33.923167,  lng: 18.387401 } },     
+                { title: '52 De Wet', location: { lat: -33.929979, lng: 18.379645 } },     
+                { title: 'Clifton Ezulwini', location: { lat: -33.937895, lng:  18.378211 } },     
+                { title: 'Abbey Manor', location: { lat: -33.941474, lng: 18.413147 } },       
+                { title: 'Welgelegen Boutique Guest House', location: { lat: -33.934981, lng: 18.408389 } },         
+                { title: 'Midtown Rentals ', location: { lat: -33.935718, lng: 18.430025 } },     
+                { title: '15 on Orange Hotel,', location: { lat: -33.928611, lng: 18.414113 } },       
+                { title: 'Bryant House Bo Kaap', location: { lat: -33.924213, lng: 18.411559  } },     
+                { title: 'Train Lodge', location: { lat: -33.924053, lng: 18.431094 } },     
+                { title: 'HomeBase Cape Town Backpackers', location: { lat: -33.920815, lng: 18.421216  } },      
+                { title: 'The Westin Cape Town', location: { lat: -33.915017, lng: 18.425262   } },      
+                { title: 'Train Lodge', location: { lat: -33.924069, lng:  18.431083  } },    
+                { title: 'Best Western Cape Suites Hotel', location: { lat: -33.931859, lng: 18.427594  } },      
+                { title: 'Cape View Accommodation', location: { lat: -33.937258, lng: 18.429491  } },       
+                { title: 'Florine Home Accommodation', location: { lat: -33.928579, lng: 18.436439   } },      
+                { title: 'The B.I.G : Backpackers in Green Point', location: { lat: -33.910293, lng: 18.409292  } },  
+                { title: 'Anchor Bay Guest House', location: { lat: -33.910317, lng: 18.399186  } },      
+                { title: 'Garden Court Nelson Mandela Boulevard', location: { lat: -33.934550,  lng: 18.447430  } },     
+                { title: 'Saint Georges Lodge', location: { lat: -33.929866, lng: 18.449983  } },       
+            ];
 
             var largeInfowindow = new google.maps.InfoWindow();
 
 
             var defaultIcon = makeMarkerIcon('FF0000');
-            var highlightedIcon = makeMarkerIcon('FFFF24');
+
 
             for (var i = 0; i < locations.length; i++) {
                 var position = locations[i].location;
@@ -250,7 +253,7 @@
 
         function makeMarkerIcon(markerColor) {
             var markerImage = new google.maps.MarkerImage(
-                'https://img.icons8.com/color/48/000000/dining-room.png',
+                'https://img.icons8.com/color/48/000000/hotel-information.png',
                 new google.maps.Size(40, 40),
                 new google.maps.Point(0, 0),
                 new google.maps.Point(10, 34),
