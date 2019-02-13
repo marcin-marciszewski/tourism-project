@@ -1,0 +1,214 @@
+$full: 100%;
+$backg: no-repeat center center fixed;
+$bungee: 'Bungee',cursive;
+$white: #FFF;
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: $full;
+    width: $full;
+
+}
+
+.padding {
+    padding: 80px 0;
+}
+
+/*Navbar*/
+
+@function fontInEm($value, $base) {
+    @return ($value / $base)+em;
+}
+
+.navbar {
+    background-color: #01659e;
+    padding: 1% 0;
+    font: {
+        size: fontInEm(21, 14);
+        family: $bungee;
+    }
+}
+
+.navbar-brand {
+    img {
+        max-width: 250px;
+        max-height: 250px;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        left: -50px;
+        top: -80px;
+    }
+}
+
+.navbar-default .navbar-nav {
+    li {
+        a {
+            color: #D5D5D5;
+        }
+    }
+}
+
+.navbar-default .navbar-nav {
+    li {
+        a:hover {
+            color: $white;
+        }
+
+        a.active1 {
+            color: $white;
+        }
+    }
+}
+
+/*Background Pictures*/
+
+@mixin backgroundImage() {
+    display: table;
+    height: $full;
+    width: $full;
+    position: relative;
+    background-size: cover;
+    @content;
+}
+
+#newyork {
+    @include backgroundImage {
+        background: url(img/ny.jpg) $backg;
+    }
+}
+
+#london {
+    @include backgroundImage {
+        background: url(img/london.jpg) $backg;
+    }
+}
+
+#tokyo {
+    @include backgroundImage {
+        background: url(img/tokyo.jpg) $backg;
+    }
+}
+
+#riode {
+    @include backgroundImage {
+        background: url(img/rio.jpg) $backg;
+    }
+}
+
+#cape {
+    @include backgroundImage {
+        background: url(img/cape.jpg) $backg;
+    }
+}
+
+#sydmey {
+    @include backgroundImage {
+        background: url(img/sydney.jpg) $backg;
+    }
+}
+
+/*Cars with places*/
+
+.landing-text {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.thumbnail {
+    height: 620px;
+    max-width: 400px;
+    margin: {
+        left: auto;
+        right: auto;
+        top: 50;
+    }
+}
+
+.thumbnail img {
+    position: relative;
+    border: solid 5px;
+    border-radius: 20px;
+    max-width: $full;
+    max-height: $full - 60;
+}
+
+.thumbnail {
+    h4 {
+        text-align: center;
+        color: green;
+        font-family: $bungee;
+        font-size: 2.5vw;
+    }
+}
+
+.btn {
+    display: block;
+    position: relative;
+    margin: {
+        left: auto;
+        right: auto;
+        bottom: 50;
+    }
+    ;
+    width: 150px;
+    font-size: 30px;
+    font-family: $bungee;
+}
+
+
+.caption {
+    text-align: center;
+}
+
+.caption {
+    h3 {
+        font: {
+            size: 16px;
+            family: 'Roboto', cursive;
+            weight: 600;
+        }
+        line-height: 160%;
+        margin-bottom: 70;
+    }
+}
+
+h5 {
+    font-size: 24px;
+    font-family: $bungee;
+}
+
+/*Footer*/
+
+footer {
+  width: $full;
+  max-height: $full - 70;
+  background-color: #01659e;
+  padding: 5% 5% 10% 5%;
+  color: $white;
+}
+
+.fa {
+  padding: 15px;
+  font-size: 2vw;
+  color: $white;
+}
+
+.fa:hover {
+  color: grey;
+  text-decoration: none;
+}
+
+.icon {
+  max-width: 200px;
+}
+
+@import "scss/media_queries"

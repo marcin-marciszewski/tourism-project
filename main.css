@@ -20,11 +20,8 @@ body {
   background-color: #01659e;
   padding: 1% 0;
   font-size: 1.5em;
-  font-family: 'Bungee', cursive;
-
+  font-family: "Bungee", cursive;
 }
-
-
 
 .navbar-brand img {
   max-width: 250px;
@@ -40,74 +37,71 @@ body {
   color: #D5D5D5;
 }
 
-.navbar-default .navbar-nav li a:hover,
+.navbar-default .navbar-nav li a:hover {
+  color: #FFF;
+}
+
 .navbar-default .navbar-nav li a.active1 {
   color: #FFF;
 }
 
 /*Background Pictures*/
 
-.landing-text h1 {
-  font-family: 'Bungee', cursive;
-  font-size: 12vw;
-  color: white;
-
-
-}
-
 #newyork {
-  background: url(img/ny.jpg) no-repeat center center fixed;
   display: table;
   height: 100%;
-  position: relative;
   width: 100%;
+  position: relative;
   background-size: cover;
+  background: url(img/ny.jpg) no-repeat center center fixed;
 }
 
 #london {
-  background: url(img/london.jpg) no-repeat center center fixed;
   display: table;
   height: 100%;
-  position: relative;
   width: 100%;
+  position: relative;
   background-size: cover;
+  background: url(img/london.jpg) no-repeat center center fixed;
 }
 
 #tokyo {
-  background: url(img/tokyo.jpg) no-repeat center center fixed;
   display: table;
   height: 100%;
-  position: relative;
   width: 100%;
+  position: relative;
   background-size: cover;
+  background: url(img/tokyo.jpg) no-repeat center center fixed;
 }
 
 #riode {
-  background: url(img/rio.jpg) no-repeat center center fixed;
   display: table;
   height: 100%;
-  position: relative;
   width: 100%;
+  position: relative;
   background-size: cover;
+  background: url(img/rio.jpg) no-repeat center center fixed;
 }
 
 #cape {
-  background: url(img/johan.jpg) no-repeat center center fixed;
   display: table;
   height: 100%;
-  position: relative;
   width: 100%;
+  position: relative;
   background-size: cover;
+  background: url(img/cape.jpg) no-repeat center center fixed;
 }
 
-#sydney {
-  background: url(img/sydney.jpg) no-repeat center center fixed;
+#sydmey {
   display: table;
   height: 100%;
-  position: relative;
   width: 100%;
+  position: relative;
   background-size: cover;
+  background: url(img/sydney.jpg) no-repeat center center fixed;
 }
+
+/*Cars with places*/
 
 .landing-text {
   display: table-cell;
@@ -129,17 +123,13 @@ body {
   border-radius: 20px;
   max-width: 100%;
   max-height: 40%;
-
 }
-
 
 .thumbnail h4 {
   text-align: center;
   color: green;
-  font-family: 'Bungee', cursive;
+  font-family: "Bungee", cursive;
   font-size: 2.5vw;
-
-
 }
 
 .btn {
@@ -150,10 +140,8 @@ body {
   margin-bottom: 50;
   width: 150px;
   font-size: 30px;
-  font-family: 'Bungee', cursive;
-
+  font-family: "Bungee", cursive;
 }
-
 
 .caption {
   text-align: center;
@@ -165,15 +153,12 @@ body {
   font-weight: 600;
   line-height: 160%;
   margin-bottom: 70;
-
 }
 
 h5 {
   font-size: 24px;
-  font-family: 'Bungee', cursive;
-
+  font-family: "Bungee", cursive;
 }
-
 
 /*Footer*/
 
@@ -200,9 +185,6 @@ footer {
   max-width: 200px;
 }
 
-
-/*Media*/
-
 @media (max-width: 1100px) {
   .thumbnail {
     height: 650px;
@@ -210,23 +192,24 @@ footer {
 }
 
 @media (max-width: 992px) {
-   .thumbnail h4 {
+  .thumbnail h4 {
     font-size: 5vw;
-   }
+  }
 }
 
 @media (max-width: 768px) {
-
   .fa {
     font-size: 30px;
     padding: 10px;
   }
-  .thumbnail h4 {
 
+  .thumbnail h4 {
     font-size: 6vw;
   }
+
   .thumbnail img {
     width: 100%;
-
   }
 }
+
+/*# sourceMappingURL=main.css.map */
