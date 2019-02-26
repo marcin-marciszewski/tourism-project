@@ -1,56 +1,15 @@
 <!--The idea for this page and big chunks of the code were taken from: https://eu.udacity.com/course/google-maps-apis--ud864. -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>London</title>
     <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
-   
-       <style>
-        html,
-        body {
-            font-family: Arial, sans-serif;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-     
-
-        #hide-listings,
-        #show-listings {
-            width: 300px;
-            height: 50px;
-            color: white;
-            background-color: #01659e;
-            border-radius: 25px;
-            border: white 5px solid;
-            font-size: 16px;
-            font-family: 'Bungee', cursive;
-
-
-        }
-
-
-        #map {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-        }
-
-        #pano {
-            width: 600px;
-            height: 300px;
-        }
-
-        .buttons {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="/maps/maps.css" type="text/css" />
 </head>
 
 <body>
@@ -58,6 +17,7 @@
     <div class="buttons">
         <input id="show-listings" type="button" value="Show Listings">
         <input id="hide-listings" type="button" value="Hide Listings">
+        <a href="/index.html"><button id="home">Home Page</button></a>
     </div>
 
     <script>
@@ -66,102 +26,93 @@
         var markers = [];
 
         function initMap() {
-            var styles = [
-    {
-        "featureType": "landscape.natural",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#e0efef"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "hue": "#1900ff"
-            },
-            {
-                "color": "#c0e8e8"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 100
-            },
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.line",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "lightness": 700
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#7dcdcd"
-            }
-        ]
-    }
-];
+            var styles = [{
+                    "featureType": "landscape.natural",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#e0efef"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "hue": "#1900ff"
+                        },
+                        {
+                            "color": "#c0e8e8"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [{
+                            "lightness": 100
+                        },
+                        {
+                            "visibility": "simplified"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "labels",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                },
+                {
+                    "featureType": "transit.line",
+                    "elementType": "geometry",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "lightness": 700
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "all",
+                    "stylers": [{
+                        "color": "#7dcdcd"
+                    }]
+                }
+            ];
 
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 51.507602, lng: -0.127936 }, 
+                center: { lat: 51.507602, lng: -0.127936 },
                 zoom: 13,
                 styles: styles,
                 mapTypeControl: false
             });
 
             var locations = [
-                { title: 'The Wonderpass', location: { lat: 51.522227, lng: -0.157241 } }, 
-                { title: 'The Royal Mews, Buckingham Palace', location: { lat: 51.498781, lng: -0.144492} }, 
-                { title: 'Harry Potter London Walking Tour', location: { lat: 51.510103, lng: -0.129927 } },  
-                { title: 'Banqueting House', location: { lat: 51.504627, lng: -0.125987 } },   
-                { title: 'Roman Bath', location: { lat: 51.511737, lng: -0.115576 } },   
-                { title: 'London Eye River Cruise', location: { lat: 51.503213, lng: -0.120467 } }, 
-                { title: 'Coca-Cola London Eye', location: { lat: 51.503198, lng: -0.119527 } },   
-                { title: 'London Dungeons', location: { lat: 51.502792, lng: -0.119275 } },   
-                { title: 'Shrek’s Adventure! London', location: { lat: 51.502007, lng: -0.119614 } },   
-                { title: 'Merlin Entertainment', location: { lat: 51.501947, lng: -0.118804 } },     
-                { title: 'Escape Plan', location: { lat: 51.489726, lng: -0.099345 } },      
-                { title: 'The London Bridge Experience & London Tombs', location: { lat: 51.506504, lng: -0.087760 } },   
-                { title: 'Tower of London - Lanthorn Tower', location: { lat: 51.507372, lng: -0.075776 } },    
-                { title: 'London Roman Amphitheatre', location: { lat:51.515605,  lng: -0.091479  } },  
-                { title: 'The Jack The Ripper Experience', location: { lat: 51.519556, lng: -0.073888 } },   
-                { title: 'A World In Islington Panels', location: { lat: 51.532825, lng: -0.098069 } },    
+                { title: 'The Wonderpass', location: { lat: 51.522227, lng: -0.157241 } },
+                { title: 'The Royal Mews, Buckingham Palace', location: { lat: 51.498781, lng: -0.144492 } },
+                { title: 'Harry Potter London Walking Tour', location: { lat: 51.510103, lng: -0.129927 } },
+                { title: 'Banqueting House', location: { lat: 51.504627, lng: -0.125987 } },
+                { title: 'Roman Bath', location: { lat: 51.511737, lng: -0.115576 } },
+                { title: 'London Eye River Cruise', location: { lat: 51.503213, lng: -0.120467 } },
+                { title: 'Coca-Cola London Eye', location: { lat: 51.503198, lng: -0.119527 } },
+                { title: 'London Dungeons', location: { lat: 51.502792, lng: -0.119275 } },
+                { title: 'Shrek’s Adventure! London', location: { lat: 51.502007, lng: -0.119614 } },
+                { title: 'Merlin Entertainment', location: { lat: 51.501947, lng: -0.118804 } },
+                { title: 'Escape Plan', location: { lat: 51.489726, lng: -0.099345 } },
+                { title: 'The London Bridge Experience & London Tombs', location: { lat: 51.506504, lng: -0.087760 } },
+                { title: 'Tower of London - Lanthorn Tower', location: { lat: 51.507372, lng: -0.075776 } },
+                { title: 'London Roman Amphitheatre', location: { lat: 51.515605, lng: -0.091479 } },
+                { title: 'The Jack The Ripper Experience', location: { lat: 51.519556, lng: -0.073888 } },
+                { title: 'A World In Islington Panels', location: { lat: 51.532825, lng: -0.098069 } },
             ];
 
             var largeInfowindow = new google.maps.InfoWindow();
@@ -256,8 +207,8 @@
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn5SRS3GViUBI4A0QjgxbM0aUH2n7btzg&callback=initMap" async defer></script>
-   
-     
+
+
 
 </body>
 

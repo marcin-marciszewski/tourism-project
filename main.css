@@ -1,27 +1,22 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 html,
 body {
   height: 100%;
-  width: 100%;
-}
+  width: 100%; }
 
 .padding {
-  padding: 80px 0;
-}
+  padding: 80px 0; }
 
 /*Navbar*/
-
 .navbar {
   background-color: #01659e;
   padding: 1% 0;
   font-size: 1.5em;
-  font-family: "Bungee", cursive;
-}
+  font-family: "Bungee", cursive; }
 
 .navbar-brand img {
   max-width: 250px;
@@ -30,107 +25,95 @@ body {
   padding: 0;
   position: relative;
   left: -50px;
-  top: -80px;
-}
+  top: -80px; }
 
 .navbar-default .navbar-nav li a {
-  color: #D5D5D5;
-}
+  color: #D5D5D5; }
 
 .navbar-default .navbar-nav li a:hover {
-  color: #FFF;
-}
-
+  color: #FFF; }
 .navbar-default .navbar-nav li a.active1 {
-  color: #FFF;
-}
+  color: #FFF; }
 
 /*Background Pictures*/
-
 #newyork {
+  background: url(img/ny.jpg) no-repeat center center fixed;
   display: table;
   height: 100%;
   width: 100%;
   position: relative;
-  background-size: cover;
-  background: url(img/ny.jpg) no-repeat center center fixed;
-}
+  background-size: cover; }
 
 #london {
+  background: url(img/london.jpg) no-repeat center center fixed;
   display: table;
   height: 100%;
   width: 100%;
   position: relative;
-  background-size: cover;
-  background: url(img/london.jpg) no-repeat center center fixed;
-}
+  background-size: cover; }
 
 #tokyo {
+  background: url(img/tokyo.jpg) no-repeat center center fixed;
   display: table;
   height: 100%;
   width: 100%;
   position: relative;
-  background-size: cover;
-  background: url(img/tokyo.jpg) no-repeat center center fixed;
-}
+  background-size: cover; }
 
 #riode {
+  background: url(img/rio.jpg) no-repeat center center fixed;
   display: table;
   height: 100%;
   width: 100%;
   position: relative;
-  background-size: cover;
-  background: url(img/rio.jpg) no-repeat center center fixed;
-}
+  background-size: cover; }
 
 #cape {
-  display: table;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  background-size: cover;
   background: url(img/cape.jpg) no-repeat center center fixed;
-}
-
-#sydmey {
   display: table;
   height: 100%;
   width: 100%;
   position: relative;
-  background-size: cover;
+  background-size: cover; }
+
+#sydney {
   background: url(img/sydney.jpg) no-repeat center center fixed;
-}
+  display: table;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-size: cover; }
 
 /*Cars with places*/
-
 .landing-text {
   display: table-cell;
   text-align: center;
-  vertical-align: middle;
-}
+  vertical-align: middle; }
+
+.landing-text h1 {
+  font-family: "Bungee", cursive;
+  font-size: 12vw;
+  color: #FFF; }
 
 .thumbnail {
   height: 620px;
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50;
-}
+  margin-top: 50; }
 
 .thumbnail img {
   position: relative;
   border: solid 5px;
   border-radius: 20px;
   max-width: 100%;
-  max-height: 40%;
-}
+  max-height: 40%; }
 
 .thumbnail h4 {
   text-align: center;
   color: green;
   font-family: "Bungee", cursive;
-  font-size: 2.5vw;
-}
+  font-size: 2.5vw; }
 
 .btn {
   display: block;
@@ -140,76 +123,62 @@ body {
   margin-bottom: 50;
   width: 150px;
   font-size: 30px;
-  font-family: "Bungee", cursive;
-}
+  font-family: "Bungee", cursive; }
 
 .caption {
-  text-align: center;
-}
+  text-align: center; }
 
 .caption h3 {
   font-size: 16px;
   font-family: 'Roboto', cursive;
   font-weight: 600;
   line-height: 160%;
-  margin-bottom: 70;
-}
+  margin-bottom: 70; }
 
 h5 {
   font-size: 24px;
-  font-family: "Bungee", cursive;
-}
+  font-family: "Bungee", cursive; }
 
 /*Footer*/
-
 footer {
   width: 100%;
   max-height: 30%;
   background-color: #01659e;
   padding: 5% 5% 10% 5%;
-  color: #FFF;
-}
+  color: #FFF; }
 
 .fa {
   padding: 15px;
   font-size: 2vw;
-  color: #FFF;
-}
+  color: #FFF; }
 
 .fa:hover {
   color: grey;
-  text-decoration: none;
-}
+  text-decoration: none; }
 
 .icon {
-  max-width: 200px;
-}
+  max-width: 200px; }
 
 @media (max-width: 1100px) {
   .thumbnail {
-    height: 650px;
-  }
-}
+    height: 650px; } }
 
 @media (max-width: 992px) {
   .thumbnail h4 {
-    font-size: 5vw;
-  }
-}
+    font-size: 5vw; } }
 
 @media (max-width: 768px) {
   .fa {
     font-size: 30px;
-    padding: 10px;
-  }
+    padding: 10px; }
 
   .thumbnail h4 {
-    font-size: 6vw;
-  }
+    font-size: 6vw; }
 
   .thumbnail img {
-    width: 100%;
-  }
-}
+    width: 100%; }
+
+  .btn {
+    margin-bottom: 70px; } }
 
 /*# sourceMappingURL=main.css.map */

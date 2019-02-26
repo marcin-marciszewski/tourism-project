@@ -1,55 +1,15 @@
 <!--The idea for this page and big chunks of the code were taken from: https://eu.udacity.com/course/google-maps-apis--ud864. -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tokyo</title>
     <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
-
-
-    <style>
-        html,
-        body {
-            font-family: Arial, sans-serif;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-     
-
-        #hide-listings,
-        #show-listings {
-            width: 300px;
-            height: 50px;
-            color: white;
-            background-color: #01659e;
-            border-radius: 25px;
-            border: white 5px solid;
-            font-size: 16px;
-            font-family: 'Bungee', cursive;
-        }
-
-
-        #map {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-        }
-
-        #pano {
-            width: 600px;
-            height: 300px;
-        }
-
-        .buttons {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="/maps/maps.css" type="text/css" />
 </head>
 
 <body>
@@ -57,6 +17,9 @@
     <div class="buttons">
         <input id="show-listings" type="button" value="Show Listings">
         <input id="hide-listings" type="button" value="Hide Listings">
+        <a href="/index.html"><button id="home">Home Page</button></a>
+
+
     </div>
 
     <script>
@@ -65,102 +28,93 @@
         var markers = [];
 
         function initMap() {
-            var styles = [
-    {
-        "featureType": "landscape.natural",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#e0efef"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "hue": "#1900ff"
-            },
-            {
-                "color": "#c0e8e8"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 100
-            },
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.line",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "lightness": 700
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#7dcdcd"
-            }
-        ]
-    }
-];
+            var styles = [{
+                    "featureType": "landscape.natural",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#e0efef"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "hue": "#1900ff"
+                        },
+                        {
+                            "color": "#c0e8e8"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [{
+                            "lightness": 100
+                        },
+                        {
+                            "visibility": "simplified"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "labels",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                },
+                {
+                    "featureType": "transit.line",
+                    "elementType": "geometry",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "lightness": 700
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "all",
+                    "stylers": [{
+                        "color": "#7dcdcd"
+                    }]
+                }
+            ];
 
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 35.682056, lng: 139.748867 },   
+                center: { lat: 35.682056, lng: 139.748867 },
                 zoom: 13,
                 styles: styles,
                 mapTypeControl: false
             });
 
             var locations = [
-                { title: 'Fūunji', location: { lat: 35.686886, lng: 139.696637 } },     
-                { title: 'Halal Ramen Ouka', location: { lat: 35.688636, lng: 139.713179 } },       
-                { title: 'Sakura Tei', location: { lat:35.670639,  lng: 139.708358 } },   
-                { title: 'Ramen Restaurant', location: { lat: 35.658826, lng: 139.698228 } },      
-                { title: 'AFURI Ebisu', location: { lat: 35.648377, lng: 139.710893 } },        
-                { title: 'XEX', location: { lat: 35.663257,lng: 139.727238 } },      
-                { title: 'Narisawa', location: { lat: 35.671571, lng: 139.722184  } },     
-                { title: 'Nobu', location: { lat: 35.666065, lng: 139.743727 } },      
-                { title: 'Tokyo Shiba Toufuya Ukai', location: { lat: 35.657615, lng: 139.745120 } },    
-                { title: 'Sushi Yoshitake', location: { lat: 35.668488, lng: 139.760947 } },        
-                { title: 'Andys Shin Hinomoto', location: { lat: 35.674200, lng: 139.761883 } },   
-                { title: 'Bulgari Hotel', location: { lat: 35.672980, lng: 139.767168 } },    
-                { title: 'Ginza Ukai Tei', location: { lat: 35.668064, lng: 139.767075   } },     
-                { title: 'Elio Locanda Italiana', location: { lat: 35.683500, lng: 139.740596  } },      
-                { title: 'Kobe Beef Kaiseki 511', location: { lat: 35.674719, lng: 139.735359 } },    
-                { title: 'Ts TanTan', location: { lat: 35.679780, lng: 139.766914 } },     
+                { title: 'Fūunji', location: { lat: 35.686886, lng: 139.696637 } },
+                { title: 'Halal Ramen Ouka', location: { lat: 35.688636, lng: 139.713179 } },
+                { title: 'Sakura Tei', location: { lat: 35.670639, lng: 139.708358 } },
+                { title: 'Ramen Restaurant', location: { lat: 35.658826, lng: 139.698228 } },
+                { title: 'AFURI Ebisu', location: { lat: 35.648377, lng: 139.710893 } },
+                { title: 'XEX', location: { lat: 35.663257, lng: 139.727238 } },
+                { title: 'Narisawa', location: { lat: 35.671571, lng: 139.722184 } },
+                { title: 'Nobu', location: { lat: 35.666065, lng: 139.743727 } },
+                { title: 'Tokyo Shiba Toufuya Ukai', location: { lat: 35.657615, lng: 139.745120 } },
+                { title: 'Sushi Yoshitake', location: { lat: 35.668488, lng: 139.760947 } },
+                { title: 'Andys Shin Hinomoto', location: { lat: 35.674200, lng: 139.761883 } },
+                { title: 'Bulgari Hotel', location: { lat: 35.672980, lng: 139.767168 } },
+                { title: 'Ginza Ukai Tei', location: { lat: 35.668064, lng: 139.767075 } },
+                { title: 'Elio Locanda Italiana', location: { lat: 35.683500, lng: 139.740596 } },
+                { title: 'Kobe Beef Kaiseki 511', location: { lat: 35.674719, lng: 139.735359 } },
+                { title: 'Ts TanTan', location: { lat: 35.679780, lng: 139.766914 } },
 
             ];
 
@@ -256,8 +210,8 @@
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn5SRS3GViUBI4A0QjgxbM0aUH2n7btzg&callback=initMap" async defer></script>
-   
-     
+
+
 
 </body>
 

@@ -1,8 +1,9 @@
+
  $(document).ready(function() {
   $('h3').fadeOut(10);
 
   var images = ["ny.jpeg", "london.jpeg", "tokyo.jpeg", "rio.jpeg", "cape.jpeg", "sydney.jpeg"];
-  var folders = ["img[src='img/attra/", "img[src='img/hotels/", "img[src='img/restaurants/"]
+  var folders = ["img[src='/img/attra/", "img[src='/img/hotels/", "img[src='/img/restaurants/"]
 
   for (i = 0; i < images.length; i++) {
    $(folders[0] + images[i]).fadeOut(10);
@@ -10,47 +11,47 @@
    $(folders[2] + images[i]).fadeOut(10);
   };
 
-  $('.first').appear(function() {
+  $('.one').appear(function() {
    $('.first-show').fadeIn(2000);
-   $(folders[0] + images[0]).fadeIn(1000);
-   $(folders[1] + images[0]).fadeIn(1000);
-   $(folders[2] + images[0]).fadeIn(1000);
+   $(folders[0] + images[0]).fadeIn(3000);
+   $(folders[1] + images[0]).fadeIn(3000);
+   $(folders[2] + images[0]).fadeIn(3000);
   });
 
-  $('.second').appear(function() {
+  $('.two').appear(function() {
    $('.second-show').fadeIn(2000);
-   $(folders[0] + images[1]).fadeIn(1000);
-   $(folders[1] + images[1]).fadeIn(1000);
-   $(folders[2] + images[1]).fadeIn(1000);
+   $(folders[0] + images[1]).fadeIn(3000);
+   $(folders[1] + images[1]).fadeIn(3000);
+   $(folders[2] + images[1]).fadeIn(3000);
 
   });
 
-  $('.third').appear(function() {
+  $('.three').appear(function() {
    $('.third-show').fadeIn(2000);
-   $(folders[0] + images[2]).fadeIn(1000);
-   $(folders[1] + images[2]).fadeIn(1000);
-   $(folders[2] + images[2]).fadeIn(1000);
+   $(folders[0] + images[2]).fadeIn(3000);
+   $(folders[1] + images[2]).fadeIn(3000);
+   $(folders[2] + images[2]).fadeIn(3000);
   });
 
-  $('.fourth').appear(function() {
+  $('.four').appear(function() {
    $('.fourth-show').fadeIn(2000);
-   $(folders[0] + images[3]).fadeIn(1000);
-   $(folders[1] + images[3]).fadeIn(1000);
-   $(folders[2] + images[3]).fadeIn(1000);
+   $(folders[0] + images[3]).fadeIn(3000);
+   $(folders[1] + images[3]).fadeIn(3000);
+   $(folders[2] + images[3]).fadeIn(3000);
   });
 
-  $('.fifth').appear(function() {
+  $('.five').appear(function() {
    $('.fifth-show').fadeIn(2000);
-   $(folders[0] + images[4]).fadeIn(1000);
-   $(folders[1] + images[4]).fadeIn(1000);
-   $(folders[2] + images[4]).fadeIn(1000);
+   $(folders[0] + images[4]).fadeIn(3000);
+   $(folders[1] + images[4]).fadeIn(3000);
+   $(folders[2] + images[4]).fadeIn(3000);
   });
 
-  $('.sixth').appear(function() {
+  $('.six').appear(function() {
    $('.sixth-show').fadeIn(2000);
-   $(folders[0] + images[5]).fadeIn(1000);
-   $(folders[1] + images[5]).fadeIn(1000);
-   $(folders[2] + images[5]).fadeIn(1000);
+   $(folders[0] + images[5]).fadeIn(3000);
+   $(folders[1] + images[5]).fadeIn(3000);
+   $(folders[2] + images[5]).fadeIn(3000);
   });
 
 
@@ -87,6 +88,10 @@
 
 
  });
- 
+
+
+
+
+
 
  

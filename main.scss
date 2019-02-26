@@ -1,6 +1,7 @@
 $full: 100%;
 $backg: no-repeat center center fixed;
-$bungee: 'Bungee',cursive;
+$bungee: 'Bungee',
+cursive;
 $white: #FFF;
 
 
@@ -80,39 +81,33 @@ body {
 }
 
 #newyork {
-    @include backgroundImage {
-        background: url(img/ny.jpg) $backg;
-    }
+    background: url(img/ny.jpg) $backg;
+    @include backgroundImage
 }
 
 #london {
-    @include backgroundImage {
-        background: url(img/london.jpg) $backg;
-    }
+    background: url(img/london.jpg) $backg;
+    @include backgroundImage
 }
 
 #tokyo {
-    @include backgroundImage {
-        background: url(img/tokyo.jpg) $backg;
-    }
+    background: url(img/tokyo.jpg) $backg;
+    @include backgroundImage
 }
 
 #riode {
-    @include backgroundImage {
-        background: url(img/rio.jpg) $backg;
-    }
+    background: url(img/rio.jpg) $backg;
+    @include backgroundImage
 }
 
 #cape {
-    @include backgroundImage {
-        background: url(img/cape.jpg) $backg;
-    }
+    background: url(img/cape.jpg) $backg;
+    @include backgroundImage
 }
 
-#sydmey {
-    @include backgroundImage {
-        background: url(img/sydney.jpg) $backg;
-    }
+#sydney {
+    background: url(img/sydney.jpg) $backg;
+    @include backgroundImage
 }
 
 /*Cars with places*/
@@ -122,6 +117,17 @@ body {
     text-align: center;
     vertical-align: middle;
 }
+
+.landing-text {
+    h1 {
+        font: {
+            family: $bungee;
+            size: 12vw;
+        }
+        color: $white;
+    }
+}
+
 
 .thumbnail {
     height: 620px;
@@ -189,26 +195,26 @@ h5 {
 /*Footer*/
 
 footer {
-  width: $full;
-  max-height: $full - 70;
-  background-color: #01659e;
-  padding: 5% 5% 10% 5%;
-  color: $white;
+    width: $full;
+    max-height: $full - 70;
+    background-color: #01659e;
+    padding: 5% 5% 10% 5%;
+    color: $white;
 }
 
 .fa {
-  padding: 15px;
-  font-size: 2vw;
-  color: $white;
+    padding: 15px;
+    font-size: 2vw;
+    color: $white;
 }
 
 .fa:hover {
-  color: grey;
-  text-decoration: none;
+    color: grey;
+    text-decoration: none;
 }
 
 .icon {
-  max-width: 200px;
+    max-width: 200px;
 }
 
 @import "scss/media_queries"

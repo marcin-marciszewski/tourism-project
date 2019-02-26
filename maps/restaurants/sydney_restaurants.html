@@ -1,56 +1,15 @@
 <!--The idea for this page and big chunks of the code were taken from: https://eu.udacity.com/course/google-maps-apis--ud864. -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sydney</title>
     <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
-
-
-    <style>
-        html,
-        body {
-            font-family: Arial, sans-serif;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-     
-
-        #hide-listings,
-        #show-listings {
-            width: 300px;
-            height: 50px;
-            color: white;
-            background-color: #01659e;
-            border-radius: 25px;
-            border: white 5px solid;
-            font-size: 16px;
-            font-family: 'Bungee', cursive;
-        }
-
-
-        #map {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-        }
-
-        #pano {
-            width: 600px;
-            height: 300px;
-            
-        }
-
-        .buttons {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="/maps/maps.css" type="text/css" />
 </head>
 
 <body>
@@ -58,6 +17,8 @@
     <div class="buttons">
         <input id="show-listings" type="button" value="Show Listings">
         <input id="hide-listings" type="button" value="Hide Listings">
+        <a href="/index.html"><button id="home">Home Page</button></a>
+
     </div>
 
     <script>
@@ -66,125 +27,116 @@
         var markers = [];
 
         function initMap() {
-            var styles = [
-    {
-        "featureType": "landscape.natural",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#e0efef"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "hue": "#1900ff"
-            },
-            {
-                "color": "#c0e8e8"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 100
-            },
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.line",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "lightness": 700
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#7dcdcd"
-            }
-        ]
-    }
-];
+            var styles = [{
+                    "featureType": "landscape.natural",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#e0efef"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "hue": "#1900ff"
+                        },
+                        {
+                            "color": "#c0e8e8"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [{
+                            "lightness": 100
+                        },
+                        {
+                            "visibility": "simplified"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "labels",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                },
+                {
+                    "featureType": "transit.line",
+                    "elementType": "geometry",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "lightness": 700
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "all",
+                    "stylers": [{
+                        "color": "#7dcdcd"
+                    }]
+                }
+            ];
 
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -33.848790, lng: 151.213883   },      
+                center: { lat: -33.848790, lng: 151.213883 },
                 zoom: 14,
                 styles: styles,
                 mapTypeControl: false
             });
 
             var locations = [
-                { title: 'Subway Restaurant', location: { lat: -33.823810, lng: 151.193776 } },    
-                { title: 'Garfish', location: { lat: -33.825099, lng: 151.202071  } },          
-                { title: 'Ezzelinos Italian Restaurant', location: { lat:-33.830124,  lng: 151.219177 } },       
-                { title: 'SoCal Sydney', location: { lat: -33.830875, lng: 151.221419 } },          
-                { title: 'Jingogae Korean Restaurant', location: { lat: -33.832856, lng: 151.207707 } },      
-                { title: 'Taruhachi Bento', location: { lat: -33.839260, lng: 151.207971 } },        
-                { title: 'Lime Light Thai', location: { lat: -33.838907, lng:  151.213791 } },      
-                { title: 'Piato Restaurant', location: { lat: -33.844556, lng: 151.204429 } },           
-                { title: 'Sails on Lavender Bay', location: { lat: -33.848525, lng:  151.206161 } },      
-                { title: 'Lavendra', location: { lat: -33.843187, lng: 151.208139 } },     
-                { title: 'Grace of India Restaurant', location: { lat: -33.845402, lng: 151.212324 } },        
-                { title: 'FOYS', location: { lat: -33.844956, lng: 151.215142 } },         
-                { title: 'La Capannina', location: { lat: -33.847291, lng: 151.212234 } },        
-                { title: 'Aqua Dining', location: { lat: -33.848939, lng: 151.211150  } },      
-                { title: 'TaTa Cafe & Thai Restaurant', location: { lat: -33.841081, lng: 151.219061 } },  
-                { title: 'Tobikiri Japanese Kitchen', location: { lat: -33.832109, lng: 151.222561 } },     
-                { title: 'Ribs & Burgers', location: { lat: -33.829860, lng: 151.220715 } },          
-                { title: 'Bennelong Restaurant and Bar', location: { lat:-33.857496,  lng: 151.214660 } },    
-                { title: 'Quay Restaurant', location: { lat: -33.857926, lng: 151.210074   } },         
-                { title: 'Fish at the Rocks', location: { lat: -33.858602,  lng: 151.203417 } },      
-                { title: 'Cirrus Dining', location: { lat: -33.863896, lng: 151.201241 } },         
-                { title: 'Bentley Restaurant + Bar', location: { lat: -33.865560, lng:  151.208832 } },       
-                { title: 'Restaurant Hubert', location: { lat: -33.865236, lng: 151.210514 } },    
-                { title: 'China Doll', location: { lat: -33.868366, lng: 151.220306   } },      
-                { title: 'Pizza Boccone', location: { lat: -33.872905, lng: 151.224224 } },         
-                { title: 'Tetsuyas Restaurant', location: { lat: -33.875114, lng: 151.204996 } },          
-                { title: 'Fortune Village Chinese Restaurant', location: { lat: -33.869913, lng: 151.205333  } },        
-                { title: 'LuMi Bar and Dining', location: { lat: -33.866771, lng:  151.197372 } },       
-                { title: 'Blue Eye Dragon', location: { lat: -33.867528, lng: 151.193756 } },  
-                { title: 'Momofuku Seiobo', location: { lat: -33.869546, lng:  151.195906 } },       
-                { title: 'The Ternary', location: { lat: -33.872228, lng: 151.197841 } },       
-                { title: 'Tetsuya Restaurant', location: { lat:  -33.875024, lng:  151.204954  } }, 
-                { title: 'A Tavola Darlinghurst', location: { lat: -33.877699, lng:  151.221771 } },        
-                { title: 'Firedoor Restaurant', location: { lat: -33.881548, lng: 151.209901 } },   
-                { title: 'Mekong Restaurant', location: { lat: -33.884723, lng:  151.201741  } },       
-                { title: 'Nando Broadway', location: { lat: -33.883257, lng: 151.194223 } },        
-                { title: 'Pho Hanoi Pho', location: { lat:  -33.879454, lng:  151.186914  } },   
- 
-    ];
+                { title: 'Subway Restaurant', location: { lat: -33.823810, lng: 151.193776 } },
+                { title: 'Garfish', location: { lat: -33.825099, lng: 151.202071 } },
+                { title: 'Ezzelinos Italian Restaurant', location: { lat: -33.830124, lng: 151.219177 } },
+                { title: 'SoCal Sydney', location: { lat: -33.830875, lng: 151.221419 } },
+                { title: 'Jingogae Korean Restaurant', location: { lat: -33.832856, lng: 151.207707 } },
+                { title: 'Taruhachi Bento', location: { lat: -33.839260, lng: 151.207971 } },
+                { title: 'Lime Light Thai', location: { lat: -33.838907, lng: 151.213791 } },
+                { title: 'Piato Restaurant', location: { lat: -33.844556, lng: 151.204429 } },
+                { title: 'Sails on Lavender Bay', location: { lat: -33.848525, lng: 151.206161 } },
+                { title: 'Lavendra', location: { lat: -33.843187, lng: 151.208139 } },
+                { title: 'Grace of India Restaurant', location: { lat: -33.845402, lng: 151.212324 } },
+                { title: 'FOYS', location: { lat: -33.844956, lng: 151.215142 } },
+                { title: 'La Capannina', location: { lat: -33.847291, lng: 151.212234 } },
+                { title: 'Aqua Dining', location: { lat: -33.848939, lng: 151.211150 } },
+                { title: 'TaTa Cafe & Thai Restaurant', location: { lat: -33.841081, lng: 151.219061 } },
+                { title: 'Tobikiri Japanese Kitchen', location: { lat: -33.832109, lng: 151.222561 } },
+                { title: 'Ribs & Burgers', location: { lat: -33.829860, lng: 151.220715 } },
+                { title: 'Bennelong Restaurant and Bar', location: { lat: -33.857496, lng: 151.214660 } },
+                { title: 'Quay Restaurant', location: { lat: -33.857926, lng: 151.210074 } },
+                { title: 'Fish at the Rocks', location: { lat: -33.858602, lng: 151.203417 } },
+                { title: 'Cirrus Dining', location: { lat: -33.863896, lng: 151.201241 } },
+                { title: 'Bentley Restaurant + Bar', location: { lat: -33.865560, lng: 151.208832 } },
+                { title: 'Restaurant Hubert', location: { lat: -33.865236, lng: 151.210514 } },
+                { title: 'China Doll', location: { lat: -33.868366, lng: 151.220306 } },
+                { title: 'Pizza Boccone', location: { lat: -33.872905, lng: 151.224224 } },
+                { title: 'Tetsuyas Restaurant', location: { lat: -33.875114, lng: 151.204996 } },
+                { title: 'Fortune Village Chinese Restaurant', location: { lat: -33.869913, lng: 151.205333 } },
+                { title: 'LuMi Bar and Dining', location: { lat: -33.866771, lng: 151.197372 } },
+                { title: 'Blue Eye Dragon', location: { lat: -33.867528, lng: 151.193756 } },
+                { title: 'Momofuku Seiobo', location: { lat: -33.869546, lng: 151.195906 } },
+                { title: 'The Ternary', location: { lat: -33.872228, lng: 151.197841 } },
+                { title: 'Tetsuya Restaurant', location: { lat: -33.875024, lng: 151.204954 } },
+                { title: 'A Tavola Darlinghurst', location: { lat: -33.877699, lng: 151.221771 } },
+                { title: 'Firedoor Restaurant', location: { lat: -33.881548, lng: 151.209901 } },
+                { title: 'Mekong Restaurant', location: { lat: -33.884723, lng: 151.201741 } },
+                { title: 'Nando Broadway', location: { lat: -33.883257, lng: 151.194223 } },
+                { title: 'Pho Hanoi Pho', location: { lat: -33.879454, lng: 151.186914 } },
+
+            ];
 
             var largeInfowindow = new google.maps.InfoWindow();
 
@@ -278,8 +230,8 @@
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn5SRS3GViUBI4A0QjgxbM0aUH2n7btzg&callback=initMap" async defer></script>
-   
-     
+
+
 
 </body>
 

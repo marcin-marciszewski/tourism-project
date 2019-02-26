@@ -1,56 +1,15 @@
 <!--The idea for this page and big chunks of the code were taken from: https://eu.udacity.com/course/google-maps-apis--ud864. -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rio De Janeiro</title>
     <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
-   
-       <style>
-        html,
-        body {
-            font-family: Arial, sans-serif;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-     
-
-        #hide-listings,
-        #show-listings {
-            width: 300px;
-            height: 50px;
-            color: white;
-            background-color: #01659e;
-            border-radius: 25px;
-            border: white 5px solid;
-            font-size: 16px;
-            font-family: 'Bungee', cursive;
-
-
-        }
-
-
-        #map {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-        }
-
-        #pano {
-            width: 600px;
-            height: 300px;
-        }
-
-        .buttons {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="/maps/maps.css" type="text/css" />
 </head>
 
 <body>
@@ -58,6 +17,7 @@
     <div class="buttons">
         <input id="show-listings" type="button" value="Show Listings">
         <input id="hide-listings" type="button" value="Hide Listings">
+        <a href="/index.html"><button id="home">Home Page</button></a>
     </div>
 
     <script>
@@ -66,101 +26,92 @@
         var markers = [];
 
         function initMap() {
-            var styles = [
-    {
-        "featureType": "landscape.natural",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#e0efef"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "hue": "#1900ff"
-            },
-            {
-                "color": "#c0e8e8"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 100
-            },
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.line",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "lightness": 700
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#7dcdcd"
-            }
-        ]
-    }
-];
+            var styles = [{
+                    "featureType": "landscape.natural",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#e0efef"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "hue": "#1900ff"
+                        },
+                        {
+                            "color": "#c0e8e8"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [{
+                            "lightness": 100
+                        },
+                        {
+                            "visibility": "simplified"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "labels",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                },
+                {
+                    "featureType": "transit.line",
+                    "elementType": "geometry",
+                    "stylers": [{
+                            "visibility": "on"
+                        },
+                        {
+                            "lightness": 700
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "all",
+                    "stylers": [{
+                        "color": "#7dcdcd"
+                    }]
+                }
+            ];
 
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -22.906846, lng: -43.181970 },     
+                center: { lat: -22.906846, lng: -43.181970 },
                 zoom: 14,
                 styles: styles,
                 mapTypeControl: false
             });
 
             var locations = [
-                { title: 'Hanging garden of valongo', location: { lat: -22.898962, lng: -43.187494 } },  
-                { title: 'Sede Abutres Rio de Janeiro', location: { lat: -22.909021, lng: -43.216270 } },   
-                { title: 'Eco sapucai', location: { lat: -22.910361, lng: -43.198170 } },     
-                { title: 'Mariachi Guacamole', location: { lat: -22.919358, lng: -43.209667 } },    
-                { title: 'Rio Free Walking Tour', location: { lat: -22.909531, lng: -43.176286 } },   
-                { title: 'Portão de Entrada ', location: { lat: -22.913012,  lng: -43.177153 } },    
-                { title: 'Lampadário da Lapa', location: { lat: -22.914202, lng: -43.178051 } },    
-                { title: 'Escadaria Selaron', location: { lat: -22.915285, lng: -43.179200 } },     
-                { title: 'Pista Aeromodelismo', location: { lat: -22.918603, lng: -43.1732652 } },       
-                { title: 'Pier', location: { lat: -22.915887, lng: -43.166038 } },        
-                { title: 'Roda de Samba do Sambastião', location: { lat: -22.922084, lng: -43.174225 } },    
-                { title: 'Monumento ao centenário da abertura dos portos', location: { lat: -22.922279, lng: -43.172692 } },      
-                { title: 'UNITRANS BRASIL RJ', location: { lat: -22.932967, lng: -43.178385    } },      
-                { title: 'Bica da Rainha.', location: { lat: -22.940722, lng:-43.197047 } },     
-                { title: 'Largo do Boticário', location: { lat: -22.939315, lng: -43.201434 } },      
+                { title: 'Hanging garden of valongo', location: { lat: -22.898962, lng: -43.187494 } },
+                { title: 'Sede Abutres Rio de Janeiro', location: { lat: -22.909021, lng: -43.216270 } },
+                { title: 'Eco sapucai', location: { lat: -22.910361, lng: -43.198170 } },
+                { title: 'Mariachi Guacamole', location: { lat: -22.919358, lng: -43.209667 } },
+                { title: 'Rio Free Walking Tour', location: { lat: -22.909531, lng: -43.176286 } },
+                { title: 'Portão de Entrada ', location: { lat: -22.913012, lng: -43.177153 } },
+                { title: 'Lampadário da Lapa', location: { lat: -22.914202, lng: -43.178051 } },
+                { title: 'Escadaria Selaron', location: { lat: -22.915285, lng: -43.179200 } },
+                { title: 'Pista Aeromodelismo', location: { lat: -22.918603, lng: -43.1732652 } },
+                { title: 'Pier', location: { lat: -22.915887, lng: -43.166038 } },
+                { title: 'Roda de Samba do Sambastião', location: { lat: -22.922084, lng: -43.174225 } },
+                { title: 'Monumento ao centenário da abertura dos portos', location: { lat: -22.922279, lng: -43.172692 } },
+                { title: 'UNITRANS BRASIL RJ', location: { lat: -22.932967, lng: -43.178385 } },
+                { title: 'Bica da Rainha.', location: { lat: -22.940722, lng: -43.197047 } },
+                { title: 'Largo do Boticário', location: { lat: -22.939315, lng: -43.201434 } },
             ];
 
             var largeInfowindow = new google.maps.InfoWindow();
@@ -255,8 +206,8 @@
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn5SRS3GViUBI4A0QjgxbM0aUH2n7btzg&callback=initMap" async defer></script>
-   
-     
+
+
 
 </body>
 
