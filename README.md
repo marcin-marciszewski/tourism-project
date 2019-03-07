@@ -14,7 +14,7 @@ User stories:
 
 Pre-implementation mockups: 
 
-![alt text](http://tourismproject.tk/img/tourism%20mockup.pdf)
+http://tourismproject.tk/img/tourism%20mockup.pdf
 
 
 
