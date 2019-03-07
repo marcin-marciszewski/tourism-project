@@ -1,8 +1,9 @@
 $full: 100%;
 $backg: no-repeat center center fixed;
-$bungee: 'Bungee',
-cursive;
+$bungee: 'Bungee',cursive;
 $white: #FFF;
+$black: #000;
+$roboto: 'Roboto',cursive;
 
 
 * {
@@ -110,6 +111,16 @@ body {
     @include backgroundImage
 }
 
+#about {
+    background: url(img/about.jpg) $backg;
+    @include backgroundImage
+}
+
+#testimonials {
+    background: url(img/testimonials.jpg) $backg;
+    @include backgroundImage
+}
+
 /*Cars with places*/
 
 .landing-text {
@@ -128,6 +139,18 @@ body {
     }
 }
 
+.landing-text {
+    p {
+        font: {
+            family: $roboto;
+            size: 24px;
+            weight: 700;
+        }
+        color: $white;
+        padding: 25px 60px;
+        
+    }
+}
 
 .thumbnail {
     height: 620px;
@@ -135,9 +158,12 @@ body {
     margin: {
         left: auto;
         right: auto;
-        top: 50;
+        top: 50px;
     }
+    border-radius: 20px;
 }
+
+
 
 .thumbnail img {
     position: relative;
@@ -145,6 +171,7 @@ body {
     border-radius: 20px;
     max-width: $full;
     max-height: $full - 60;
+    margin-top: 20px;
 }
 
 .thumbnail {
@@ -179,7 +206,7 @@ body {
     h3 {
         font: {
             size: 16px;
-            family: 'Roboto', cursive;
+            family: $roboto;
             weight: 600;
         }
         line-height: 160%;
@@ -196,14 +223,14 @@ h5 {
 
 footer {
     width: $full;
-    max-height: $full - 70;
+    max-height: $full;
     background-color: #01659e;
-    padding: 5% 5% 10% 5%;
+    padding: 30px 20px 5px 20px;
     color: $white;
 }
 
 .fa {
-    padding: 15px;
+    padding: 30px 25px;
     font-size: 2vw;
     color: $white;
 }
@@ -215,6 +242,11 @@ footer {
 
 .icon {
     max-width: 200px;
+}
+
+.jumbotron {
+    width: $full;
+    height: $full;
 }
 
 @import "scss/media_queries"

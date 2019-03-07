@@ -3,7 +3,7 @@
   $('h3').fadeOut(10);
 
   var images = ["ny.jpeg", "london.jpeg", "tokyo.jpeg", "rio.jpeg", "cape.jpeg", "sydney.jpeg"];
-  var folders = ["img[src='/img/attra/", "img[src='/img/hotels/", "img[src='/img/restaurants/"]
+  var folders = ["img[src='img/attra/", "img[src='img/hotels/", "img[src='img/restaurants/"]
 
   for (i = 0; i < images.length; i++) {
    $(folders[0] + images[i]).fadeOut(10);

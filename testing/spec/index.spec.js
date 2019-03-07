@@ -58,7 +58,7 @@ describe('index.html', function() {
 
             it('should exist with right id and have a child with the class: landing-text ', function() {
                 expect($('#london')[0]).toBeInDOM();
-                expect($('<div id="newyork"><div class="landing-text"></div></div>')).toContainElement('div.landing-text');
+                expect($('<div id="london"><div class="landing-text"></div></div>')).toContainElement('div.landing-text');
             });
 
             it('should have right title ', function() {
