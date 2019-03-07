@@ -1,8 +1,8 @@
 <h1>Discover the world</h1>
 
-     The primary goal of the created website is to provide potential users with a wide range of tourist destinations and help them discover the most exciting places. We can find six vibrant cities on six different continents. There is New York with a unique mixture of cultures, London with its rich history, futuristic Tokyo,  jolly Rio De Janeiro,  Cape Town with its natural beaches and Sydney where you can enjoy excellent weather.
+   The primary goal of the created website is to provide potential users with a wide range of tourist destinations and help them discover the most exciting places. We can find six vibrant cities on six different continents. There is New York with a unique mixture of cultures, London with its rich history, futuristic Tokyo,  jolly Rio De Janeiro,  Cape Town with its natural beaches and Sydney where you can enjoy excellent weather.
    Users can find all necessary information regarding attractions, places to stay and the best restaurants.  Integrated maps allow users to locate a particular place and see close neighborhood thanks to implemented Google Street View.
-
+   
 <h2>UX</h2>
 The project's website was created to introduce potential customers to holiday destinations and focus their attention on interesting places which they can find there. The front page contains cards leading to maps with attractions, hotels, and restaurants in all of the cities. Those places are the most critical factor before deciding about the next vacations. 
 User stories:
