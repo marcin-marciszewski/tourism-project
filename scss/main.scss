@@ -82,42 +82,42 @@ body {
 }
 
 #newyork {
-    background: url(img/ny.jpg) $backg;
+    background: url(/img/ny.jpg) $backg;
     @include backgroundImage
 }
 
 #london {
-    background: url(img/london.jpg) $backg;
+    background: url(/img/london.jpg) $backg;
     @include backgroundImage
 }
 
 #tokyo {
-    background: url(img/tokyo.jpg) $backg;
+    background: url(/img/tokyo.jpg) $backg;
     @include backgroundImage
 }
 
 #riode {
-    background: url(img/rio.jpg) $backg;
+    background: url(/img/rio.jpg) $backg;
     @include backgroundImage
 }
 
 #cape {
-    background: url(img/cape.jpg) $backg;
+    background: url(/img/cape.jpg) $backg;
     @include backgroundImage
 }
 
 #sydney {
-    background: url(img/sydney.jpg) $backg;
+    background: url(/img/sydney.jpg) $backg;
     @include backgroundImage
 }
 
 #about {
-    background: url(img/about.jpg) $backg;
+    background: url(/img/about.jpg) $backg;
     @include backgroundImage
 }
 
 #testimonials {
-    background: url(img/testimonials.jpg) $backg;
+    background: url(/img/testimonials.jpg) $backg;
     @include backgroundImage
 }
 
@@ -249,4 +249,4 @@ footer {
     height: $full;
 }
 
-@import "scss/media_queries"
+@import "scss/media_queries.scss"
