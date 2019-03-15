@@ -14,7 +14,7 @@ User stories:
 
 Pre-implementation mockups: 
 
-http://tourismproject.tk/img/tourism%20mockup.pdf
+http://tourism-project.tk/img/tourism%20mockup.pdf
 
 
 
@@ -40,25 +40,45 @@ Technologies Used:
 <h2>Testing</h2>
 The project has been tested on multiple browsers and devices. The HTML5 and CSS3 code have also been validated with C3W Markup Validator and C3W CSS Validator. Jasmine and Jasmine-Jquery were adopted for testing.
 
-1. Browsing through the offer. 
-a) The front page containing the available offer is loading properly. All images, buttons, and descriptions are visible for the users. 
-b) All links to the destinations were tested and working, leading to the subpages.
-c) The front page was tested on many devices and resolutions to make sure that the content is adjusting to the particular screen size.
-2. Checking a particular destination.
-a) All links to the subpages with hotels, restaurants, and attractions were checked and working properly.
-b) Maps are visible and all buttons for showing and hiding listing are functional.
-3) Checking the neighborhood.
-a) After clicking on an icon of a place a window is popping up allowing the user to see the neighborhood of the place he chose.
-b) The window from the Google Street View has the right size and the center of the map is adjusting respectively.
-4) Links in the navbar work correctly leading to the right places. 
-a) The "About" page is available and has the right structure.
-b) The "Testimonials" page contains all cards with customers feedbacks.
+1. Browsing through the offer.<br> 
+a) The front page containing the available offer is loading properly. All images, buttons, and descriptions are visible for the users.<br>  
+b) All links to the destinations were tested and working, leading to the subpages.<br> 
+c) The front page was tested on many devices and resolutions to make sure that the content is adjusting to the particular screen size.<br> 
+2. Checking a particular destination.<br> 
+a) All links to the subpages with hotels, restaurants, and attractions were checked and working properly.<br> 
+b) Maps are visible and all buttons for showing and hiding listing are functional.<br> 
+3) Checking the neighborhood.<br> 
+a) After clicking on an icon of a place a window is popping up allowing the user to see the neighborhood of the place he chose.<br> 
+b) The window from the Google Street View has the right size and the center of the map is adjusting respectively.<br> 
+4) Links in the navbar work correctly leading to the right places. <br> 
+a) The "About" page is available and has the right structure.<br> 
+b) The "Testimonials" page contains all cards with customers feedbacks.<br> 
 
-Jasmine and Jquery-jasmine were used for testing the page and the result can be found here: http://tourismproject.tk/testing/spec/spec-runner.html
+Jasmine and Jquery-jasmine were used for testing the page and the result can be found here: http://tourism-project.tk/testing/spec/spec-runner.html<br> 
+
+When you run the `index.html` file, visit:<br> 
+
+http://URL.com/testing/spec/spec-runner.html<br> 
+
+where <URL> can be http://localhost:8081/testing/spec/spec-runner.html<br> 
+
+All test done by Jasmine check whether:<br> 
+
+1) Click event on the buttons triggers redirection to linked subpages. <br> 
+2) Navbar contains class "navbar".<br> 
+3) Click event invokes "navbar-toggle" class.<br> 
+4) Burger menu contains five tabs.<br> 
+5) The front page contains 18 cars with places to visit.<br> 
+6) All section for six cities have:<br> 
+	a) right id and class "landing-text"<br> 
+	b) have the right title<br> 
+	c) have the right grid structure<br> 
+7) Footer has correct grid structure and contains five social media icons.<br> 
+
 
 <h2>Deployment</h2> 
 
-The project was deployed on a hosting server and is possible to find under domain: http://tourismproject.tk/index.html. The website is hosted on a private server which provides security and stability. 
+The project was deployed on a hosting server and is possible to find under domain: http://touris-mproject.tk/index.html. The website is hosted on a private server which provides security and stability. 
 The project is available on GitHub: 
 https://github.com/szantilas87/tourism-project
 

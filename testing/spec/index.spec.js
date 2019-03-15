@@ -1,6 +1,6 @@
 describe('index.html', function() {
     beforeEach(function() {
-        jasmine.getFixtures().fixturesPath = 'http://tourismproject.tk/testing/script';
+        jasmine.getFixtures().fixturesPath = 'http://tourismproject.tk/testing/script/';
         loadFixtures('index.html');
     });
 
