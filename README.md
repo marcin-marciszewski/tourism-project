@@ -41,7 +41,7 @@ Technologies Used:
 The project has been tested on multiple browsers and devices. The HTML5 and CSS3 code have also been validated with C3W Markup Validator and C3W CSS Validator. Jasmine and Jasmine-Jquery were adopted for testing.
 
 1. Browsing through the offer.<br> 
-a) The front page containing the available offer is loading properly. All images, buttons, and descriptions are visible for the users.<br>  
+a) The front page containing the available offer is loading properly. All images, buttons, and descriptions are visible for the users.<br>
 b) All links to the destinations were tested and working, leading to the subpages.<br> 
 c) The front page was tested on many devices and resolutions to make sure that the content is adjusting to the particular screen size.<br> 
 2. Checking a particular destination.<br> 
