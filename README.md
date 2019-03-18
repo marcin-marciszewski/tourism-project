@@ -30,11 +30,11 @@ The app.js file is responsible for adding all visual effects making the website 
 <h2>Technologies Used</h2>
 
 Technologies Used:
-- JavaScript makes the website more interactive.
-- JQuery facilitate DOM manipulation. 
-- JQurey appear library was added for extra functionality. 
-- Bootstrap provides essential elements and overall clarity.
-- Jasmine was used for testing the final product. 
+- HTML
+- JavaScript and JQuery
+- SASS
+- Bootstrap
+
 
 
 <h2>Testing</h2>
