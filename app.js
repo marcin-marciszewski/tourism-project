@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+ var colorGenerator = function() {
+   return "rgb(" + Math.floor(Math.random() * 255) +
+   "," + Math.floor(Math.random() * 255) + "," +
+   Math.floor(Math.random() * 255) + ")"
+ }
+
 
  var images = ["ny.jpeg", "london.jpeg", "tokyo.jpeg", "rio.jpeg", "cape.jpeg", "sydney.jpeg"];
  var folders = ["img[src='/img/attra/", "img[src='/img/hotels/", "img[src='/img/restaurants/"]
@@ -56,10 +62,7 @@ $(document).ready(function() {
  });
 
  $('.landing-text h1').mouseenter(function() {
-  const col = ("rgb(" + Math.floor(Math.random() * 255) +
-   "," + Math.floor(Math.random() * 255) + "," +
-   Math.floor(Math.random() * 255) + ")");
-  $(this).css('color', col);
+  $(this).css('color', colorGenerator());
   $(this).css('font-size', '14vw');
  });
 
@@ -69,17 +72,11 @@ $(document).ready(function() {
  });
 
  $('h4').mouseenter(function() {
-  const col = ("rgb(" + Math.floor(Math.random() * 255) +
-   "," + Math.floor(Math.random() * 255) + "," +
-   Math.floor(Math.random() * 255) + ")");
-  $(this).css('color', col);
+  $(this).css('color', colorGenerator());
   $(this).css('font-family', 'Righteous')
  });
  $('h4').mouseleave(function() {
-  const col = ("rgb(" + Math.floor(Math.random() * 255) +
-   "," + Math.floor(Math.random() * 255) + "," +
-   Math.floor(Math.random() * 255) + ")");
-  $(this).css('color', col);
+  $(this).css('color', colorGenerator());
   $(this).css('font-family', 'Bungee')
  });
 });
