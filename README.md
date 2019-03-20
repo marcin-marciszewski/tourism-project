@@ -78,7 +78,7 @@ All test done by Jasmine check whether:<br>
 
 <h2>Deployment</h2> 
 
-The project was deployed on a hosting server and is possible to find under domain: http://touris-mproject.tk/index.html. The website is hosted on a private server which provides security and stability. 
+The project was deployed on a hosting server and is possible to find under domain: http://tourism-project.tk/index.html. The website is hosted on a private server which provides security and stability. 
 The project is available on GitHub: 
 https://github.com/szantilas87/tourism-project
 
