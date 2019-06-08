@@ -5,13 +5,13 @@
    
 <h2>UX</h2>
 The project's website was created to introduce potential customers to holiday destinations and focus their attention on interesting places which they can find there. The front page contains cards leading to maps with attractions, hotels, and restaurants in all of the cities. Those places are the most critical factor before deciding about the next vacations. 
-User stories:
-- A user who is looking for his next holiday destination can choose from a variety of potential places.
-- A user who wants to check the availability of hotel rooms, the local restaurant, and entertainment, can visit maps linked to particular locations. 
-- A user who wants to see the local area close to the chosen place can click on an icon and use the implemented Google Street View feature. 
-- A user interested in getting more information about the company can visit the "About" link.
-- A user who wants to get to know opinions from previous customers can visit the "Testimonials" link.
-
+<ul>User stories:
+<li>- A user who is looking for his next holiday destination can choose from a variety of potential places.</li>
+<li>- A user who wants to check the availability of hotel rooms, the local restaurant, and entertainment, can visit maps linked to particular locations.</li> 
+<li>- A user who wants to see the local area close to the chosen place can click on an icon and use the implemented Google Street View feature.</li> 
+<li>- A user interested in getting more information about the company can visit the "About" link.</li>
+<li>- A user who wants to get to know opinions from previous customers can visit the "Testimonials" link.</li>
+</ul>
 Pre-implementation mockups: 
 
 http://tourism-project.tk/img/tourism%20mockup.pdf
