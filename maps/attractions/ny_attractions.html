@@ -5,7 +5,7 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Bungee|Righteous|Roboto" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="/maps/maps.css" type="text/css" />
 </head>
 
@@ -24,76 +24,76 @@
 
         function initMap() {
             var styles = [
-    {
-        "featureType": "landscape.natural",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#e0efef"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "hue": "#1900ff"
-            },
-            {
-                "color": "#c0e8e8"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 100
-            },
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.line",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "lightness": 700
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#7dcdcd"
-            }
-        ]
-    }
-];
+                {
+                    "featureType": "landscape.natural",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#e0efef"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        },
+                        {
+                            "hue": "#1900ff"
+                        },
+                        {
+                            "color": "#c0e8e8"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "lightness": 100
+                        },
+                        {
+                            "visibility": "simplified"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "labels",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit.line",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        },
+                        {
+                            "lightness": 700
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "color": "#7dcdcd"
+                        }
+                    ]
+                }
+            ];
 
             map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 40.7413549, lng: -73.9980244 },
@@ -104,32 +104,32 @@
 
             var locations = [
                 { title: 'Hoboken Food Tour', location: { lat: 40.735772, lng: -74.029335 } },
-                { title: 'The Battery Fountain', location: { lat: 40.702797, lng: -74.016522 } }, 
+                { title: 'The Battery Fountain', location: { lat: 40.702797, lng: -74.016522 } },
                 { title: 'Fountain at Wall Street', location: { lat: 40.704464, lng: -74.006188 } },
-                { title: 'Wall Street Walks', location: { lat: 40.706078, lng: -74.008906 } }, 
-                { title: 'Fountain at Wall Street', location: { lat: 40.704457, lng: -74.006166 } },  
-                { title: 'The Brooklyn Bridge ', location: { lat: 40.707490, lng: -73.998457 } }, 
-                { title: 'FDNY Memorial Wall', location: { lat: 40.709903, lng: -74.012591 } }, 
+                { title: 'Wall Street Walks', location: { lat: 40.706078, lng: -74.008906 } },
+                { title: 'Fountain at Wall Street', location: { lat: 40.704457, lng: -74.006166 } },
+                { title: 'The Brooklyn Bridge ', location: { lat: 40.707490, lng: -73.998457 } },
+                { title: 'FDNY Memorial Wall', location: { lat: 40.709903, lng: -74.012591 } },
                 { title: 'One World Observatory', location: { lat: 40.713365, lng: -74.016522 } },
-                { title: 'Greetings from Jersey City Mural', location: { lat: 40.730621, lng: -74.042584 } }, 
-                { title: 'JC OLD FIRE HOUSE', location: { lat: 40.742304, lng: -74.047621 } },   
-                { title: 'Hess Triangle', location: { lat: 40.733571, lng: -74.003104 } },    
-                { title: 'Metronome ', location: { lat: 40.734450, lng: -73.990236 } }, 
-                { title: 'The Water Tank Project-Jordi Fornies', location: { lat: 40.734961, lng: -73.987981 } },  
-                { title: 'Grayline New York Tours', location: { lat:40.748586,  lng: -73.985462  } }, 
-                { title: 'New York Explorer Pass®', location: { lat: 40.750894, lng: -73.989458 } },  
-                { title: 'Nikola Tesla Plaque', location: { lat: 40.752959, lng: -73.994134 } },   
+                { title: 'Greetings from Jersey City Mural', location: { lat: 40.730621, lng: -74.042584 } },
+                { title: 'JC OLD FIRE HOUSE', location: { lat: 40.742304, lng: -74.047621 } },
+                { title: 'Hess Triangle', location: { lat: 40.733571, lng: -74.003104 } },
+                { title: 'Metronome ', location: { lat: 40.734450, lng: -73.990236 } },
+                { title: 'The Water Tank Project-Jordi Fornies', location: { lat: 40.734961, lng: -73.987981 } },
+                { title: 'Grayline New York Tours', location: { lat: 40.748586, lng: -73.985462 } },
+                { title: 'New York Explorer Pass®', location: { lat: 40.750894, lng: -73.989458 } },
+                { title: 'Nikola Tesla Plaque', location: { lat: 40.752959, lng: -73.994134 } },
                 { title: 'Ripleys Believe It or Not! Times Square', location: { lat: 40.756475, lng: -73.988888 } },
-                { title: 'Max Neuhaus’ sound installation “Times Square.” ', location: { lat: 40.757650, lng: -73.985301 } },   
-                { title: 'The Channel Gardens', location: { lat: 40.758527, lng: -73.978084 } },   
-                { title: 'Bethesda Terrace', location: { lat: 40.773900, lng: -73.970821 } },  
+                { title: 'Max Neuhaus’ sound installation “Times Square.” ', location: { lat: 40.757650, lng: -73.985301 } },
+                { title: 'The Channel Gardens', location: { lat: 40.758527, lng: -73.978084 } },
+                { title: 'Bethesda Terrace', location: { lat: 40.773900, lng: -73.970821 } },
             ];
 
             var largeInfowindow = new google.maps.InfoWindow();
 
 
             var defaultIcon = makeMarkerIcon('FF0000');
-            
+
             for (var i = 0; i < locations.length; i++) {
                 var position = locations[i].location;
                 var title = locations[i].title;
@@ -141,10 +141,10 @@
                     id: i
                 });
                 markers.push(marker);
-                marker.addListener('click', function() {
+                marker.addListener('click', function () {
                     populateInfoWindow(this, largeInfowindow);
                 });
-               
+
             }
 
             document.getElementById('show-listings').addEventListener('click', showListings);
@@ -156,7 +156,7 @@
             if (infowindow.marker != marker) {
                 infowindow.setContent('');
                 infowindow.marker = marker;
-                infowindow.addListener('closeclick', function() {
+                infowindow.addListener('closeclick', function () {
                     infowindow.marker = null;
                 });
                 var streetViewService = new google.maps.StreetViewService();
@@ -206,7 +206,7 @@
 
         function makeMarkerIcon(markerColor) {
             var markerImage = new google.maps.MarkerImage(
-                'https://img.icons8.com/color/64/000000/marker.png',
+                'https://img.icons8.com/color/48/000000/marker.png',
                 new google.maps.Size(40, 40),
                 new google.maps.Point(0, 0),
                 new google.maps.Point(10, 34),
@@ -215,9 +215,10 @@
         }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn5SRS3GViUBI4A0QjgxbM0aUH2n7btzg&callback=initMap" async defer></script>
-   
-     
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn5SRS3GViUBI4A0QjgxbM0aUH2n7btzg&callback=initMap"
+        async defer></script>
+
+
 
 </body>
 
